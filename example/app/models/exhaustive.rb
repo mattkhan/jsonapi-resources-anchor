@@ -1,0 +1,2 @@
+class Exhaustive < ApplicationRecord
+end

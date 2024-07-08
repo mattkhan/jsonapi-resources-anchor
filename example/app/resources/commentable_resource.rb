@@ -1,0 +1,1 @@
+class CommentableResource < ApplicationResource; end
