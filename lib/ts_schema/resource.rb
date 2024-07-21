@@ -2,6 +2,10 @@ module TSSchema
   class Resource < JSONAPI::Resource
     abstract
 
+    def fetchable_fields
+      self.class.fetchable_fields(context)
+    end
+
     class << self
       # @param name [String] The type identifier to be used in the schema.
       # @return [String]
@@ -31,10 +35,16 @@ module TSSchema
         super(name, opts)
       end
 
+      # @param context [Hash]
       # @return [String]
-      def to_ts_type_string
-        properties = [ts_schema_id_property] + [ts_schema_type_property] + ts_schema_attributes_properties + Array.wrap(ts_schema_relationships_property)
+      def to_ts_type_string(context: {}, include_all_fields:)
+        included_fields = context.blank? && include_all_fields ? fields : self.fetchable_fields(context)
+        properties = [ts_schema_id_property] + [ts_schema_type_property] + ts_schema_attributes_properties(included_fields:) + Array.wrap(ts_schema_relationships_property(included_fields:))
         "export type #{schema_name} = " + Types.type_string(Types::Object.new(properties)) + ";"
+      end
+
+      def fetchable_fields(context)
+        fields
       end
 
       private
@@ -55,9 +65,11 @@ module TSSchema
         Types::Property.new(:type, Types::Literal.new(_type))
       end
 
+      # @param included_fields [Array<Symbol>]
       # @return [Array<TSSchema::Types::Property>]
-      def ts_schema_attributes_properties
-        _attributes.except(:id).map do |attr, options|
+      def ts_schema_attributes_properties(included_fields:)
+        _attributes.except(:id).filter_map do |attr, options|
+          next unless included_fields.include?(attr.to_sym)
           type = @_ts_schema_attributes[attr] if @_ts_schema_attributes.key?(attr)
           type ||= begin
             attr_name = options[:delegate] || attr
@@ -69,17 +81,20 @@ module TSSchema
         end
       end
 
+      # @param included_fields [Array<Symbol>]
       # @return [TSSchema::Types::Property, NilClass]
-      def ts_schema_relationships_property
-        ts_schema_relationships_properties.then do |properties|
+      def ts_schema_relationships_property(included_fields:)
+        ts_schema_relationships_properties(included_fields:).then do |properties|
           break if properties.blank?
           Types::Property.new(:relationships, Types::Object.new(properties))
         end
       end
 
+      # @param included_fields [Array<Symbol>]
       # @return [Array<TSSchema::Types::Property>]
-      def ts_schema_relationships_properties
-        _relationships.map do |name, rel|
+      def ts_schema_relationships_properties(included_fields:)
+        _relationships.filter_map do |name, rel|
+          next unless included_fields.include?(name.to_sym)
           relationship_type = relationship_type_for(rel, rel.resource_klass, name) if @_ts_schema_relationships.exclude?(name)
 
           relationship_type ||= begin

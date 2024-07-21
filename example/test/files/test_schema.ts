@@ -11,11 +11,9 @@ export enum UserRole {
 export type Comment = {
   id: number;
   type: "comments";
-  text: string;
   created_at: string;
   updated_at: string;
   relationships: {
-    user: User;
     commentable: Maybe<User | Post>;
   };
 };

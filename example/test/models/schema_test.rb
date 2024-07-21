@@ -27,4 +27,6 @@ class SchemaTest < ActiveSupport::TestCase
   end
 
   snapshot_test :schema, -> { Schema.generate }
+  snapshot_test :test_schema, -> { Schema.generate(context: { role: 'test' }) }
+  snapshot_test :all_fields_false_schema, -> { Schema.generate(include_all_fields: false) }
 end

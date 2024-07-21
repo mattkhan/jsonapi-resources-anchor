@@ -3,22 +3,25 @@ module TSSchema
     class << self
       # @param resource [TSSchema::Resource]
       def resource(resource)
-        @types ||= []
-        @types.push(resource)
+        @resources ||= []
+        @resources.push(resource)
       end
 
       # @param enum [TSSchema::Types::Enum]
       def enum(enum)
-        @types ||= []
-        @types.push(enum)
+        @enums ||= []
+        @enums.push(enum)
       end
 
+      # @param context [Hash]
+      # @param include_all_fields [Boolean]
       # @return [String]
-      def generate
+      def generate(context: {}, include_all_fields: true)
         maybe_type = "type Maybe<T> = T | null;"
-        types = @types.map(&:to_ts_type_string)
+        enums = @enums.map(&:to_ts_type_string)
+        types = @resources.map { |t| t.to_ts_type_string(context:, include_all_fields:) }
 
-        ([maybe_type] + types).join("\n\n") + "\n"
+        ([maybe_type] + enums + types).join("\n\n") + "\n"
       end
     end
   end
