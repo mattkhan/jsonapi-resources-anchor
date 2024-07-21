@@ -4,6 +4,7 @@ class CommentResource < ApplicationResource
   attribute :updated_at
  
   relationship :user, to: :one
+  relationship :deleted_by, to: :one, class_name: "User"
   relationship :commentable, TSSchema::Types::Relationship.new(resources: [UserResource, PostResource], null: true), polymorphic: true, to: :one
 
   def self.fetchable_fields(context)

@@ -1,7 +1,7 @@
 class ExhaustiveResource < TSSchema::Resource
   object = TSSchema::Types::Object.new([
     TSSchema::Types::Property.new(:a, TSSchema::Types::Literal.new("a")),
-    TSSchema::Types::Property.new(:b, TSSchema::Types::Literal.new(1)),
+    TSSchema::Types::Property.new("b-dash", TSSchema::Types::Literal.new(1)),
     TSSchema::Types::Property.new(:c, TSSchema::Types::Maybe.new(TSSchema::Types::String)),
   ])
 
@@ -48,7 +48,7 @@ class ExhaustiveResource < TSSchema::Resource
 
   def asserted_unknown = nil
 
-  def asserted_object = { a: "a", b: 1, c: nil }
+  def asserted_object = { a: "a", "b-dash" => 1, c: nil }
 
   def asserted_maybe_object = nil
 

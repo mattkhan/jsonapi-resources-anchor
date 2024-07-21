@@ -38,7 +38,22 @@ module TSSchema
     #   @return [String, Symbol]
     # @!attribute [r] type
     #   @return [TSSchema::Types] the types supported in {type_string}
-    Property = Struct.new(:name, :type)
+    Property = Struct.new(:name, :type) do
+      def format_keys!
+        self.name = case TSSchema.config.field_case
+        when :camel then name.to_s.underscore.camelize(:lower)
+        when :kebab then name.to_s.underscore.dasherize
+        when :snake then name.to_s.underscore
+        else self.name
+        end
+
+        self
+      end
+
+      def safe_name
+        name.match?(/[^a-zA-Z0-9_]/) ? "\"#{name}\"" : name
+      end
+    end
 
     # @!attribute [r] resource
     #   @return [TSSchema::Resource, NilClass] the associated resource
@@ -114,7 +129,7 @@ module TSSchema
       end
 
       def serialize_object(type, depth)
-        properties = type.properties.map { |p| "#{p.name}: #{type_string(p.type, depth + 1)};" }
+        properties = type.properties.map { |p| "#{p.safe_name}: #{type_string(p.type, depth + 1)};" }
         indent = " " * (depth * 2)
         properties = properties.map { |p| p.prepend(indent) }.join("\n")
         ["{", properties, "}".prepend(indent[2..])].join("\n")
