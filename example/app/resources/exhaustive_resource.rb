@@ -36,6 +36,7 @@ class ExhaustiveResource < TSSchema::Resource
   attribute :enum
   attribute :virtual_upcased_string
   attribute :loljk
+  attribute :delegated_maybe_string, delegate: :maybe_string
 
   def asserted_string = "asserted_string"
 
