@@ -1,1 +1,1 @@
-class CommentablesController < JSONAPI::ResourceController; end
+class CommentablesController < ResourcesController; end

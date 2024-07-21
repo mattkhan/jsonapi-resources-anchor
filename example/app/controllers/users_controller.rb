@@ -1,1 +1,1 @@
-class UsersController < JSONAPI::ResourceController; end
+class UsersController < ResourcesController; end

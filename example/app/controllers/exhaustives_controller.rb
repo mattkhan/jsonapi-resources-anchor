@@ -1,1 +1,1 @@
-class ExhaustivesController < JSONAPI::ResourceController; end
+class ExhaustivesController < ResourcesController; end

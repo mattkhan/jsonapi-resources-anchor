@@ -1,1 +1,1 @@
-class PostsController < JSONAPI::ResourceController; end
+class PostsController < ResourcesController; end
