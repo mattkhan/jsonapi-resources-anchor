@@ -79,4 +79,5 @@ export type Exhaustive = {
   daterange: unknown;
   enum: unknown;
   virtual_upcased_string: Maybe<string>;
+  loljk: never;
 };

@@ -47,6 +47,7 @@ class Seeder
         jsonb: { key: "value", nested: { key: "value" } },
         daterange: time..(time + 10.days),
         enum: "sample",
+        loljk: nil
       }
 
       Exhaustive.find_or_create_by!(uuid: attributes[:uuid]) do |exhaustive|

@@ -123,7 +123,8 @@ module TSSchema
 
     module SQL
       class << self
-        def from(column)
+        def from(column, check_config: true)
+          return TSSchema.config.ar_column_to_type.call(column) if check_config && TSSchema.config.ar_column_to_type
           type = from_sql_type(column.type)
 
           if column.sql_type_metadata.sql_type == 'character varying[]'
@@ -131,6 +132,10 @@ module TSSchema
           end
 
           column.null ? Types::Maybe.new(type) : type
+        end
+
+        def default_ar_column_to_type(column)
+          from(column, check_config: false)
         end
 
         private

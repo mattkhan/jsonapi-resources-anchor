@@ -35,6 +35,7 @@ class ExhaustiveResource < TSSchema::Resource
   attribute :daterange
   attribute :enum
   attribute :virtual_upcased_string
+  attribute :loljk
 
   def asserted_string = "asserted_string"
 
