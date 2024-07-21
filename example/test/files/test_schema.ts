@@ -82,4 +82,5 @@ export type Exhaustive = {
   virtualUpcasedString: Maybe<string>;
   loljk: never;
   delegatedMaybeString: Maybe<string>;
+  modelOverridden: unknown;
 };

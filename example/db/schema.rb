@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_21_052120) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_21_184631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_052120) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "loljk"
+    t.string "model_overridden"
+    t.string "resource_overridden"
   end
 
   create_table "posts", force: :cascade do |t|

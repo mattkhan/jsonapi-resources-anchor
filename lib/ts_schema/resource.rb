@@ -73,7 +73,8 @@ module TSSchema
           type = @_ts_schema_attributes[attr] if @_ts_schema_attributes.key?(attr)
           type ||= begin
             attr_name = options[:delegate] || attr
-            column = _model_class.try(:columns_hash).try(:[], attr_name.to_s)
+            method_defined = _model_class.method_defined?(attr_name.to_sym)
+            column = !method_defined && _model_class.try(:columns_hash).try(:[], attr_name.to_s)
             column ? Types::SQL.from(column) : Types::Unknown
           end
 

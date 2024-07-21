@@ -37,6 +37,7 @@ class ExhaustiveResource < TSSchema::Resource
   attribute :virtual_upcased_string
   attribute :loljk
   attribute :delegated_maybe_string, delegate: :maybe_string
+  attribute :model_overridden
 
   def asserted_string = "asserted_string"
 
