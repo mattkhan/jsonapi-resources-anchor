@@ -38,6 +38,7 @@ class ExhaustiveResource < TSSchema::Resource
   attribute :loljk
   attribute :delegated_maybe_string, delegate: :maybe_string
   attribute :model_overridden
+  attribute :resource_overridden
 
   def asserted_string = "asserted_string"
 
@@ -58,4 +59,6 @@ class ExhaustiveResource < TSSchema::Resource
   def asserted_union = 2
 
   def inferred_unknown = nil
+
+  def resource_overridden = "resource_overridden"
 end

@@ -49,6 +49,11 @@ module TSSchema
 
       private
 
+      def method_added(method_name)
+        @_method_added_count ||= Hash.new(0)
+        @_method_added_count[method_name] += 1
+      end
+
       # @return [TSSchema::Types::Property]
       def ts_schema_id_property
         # TODO: resource_key_type can also return a proc
@@ -72,9 +77,14 @@ module TSSchema
           next unless included_fields.include?(attr.to_sym)
           type = @_ts_schema_attributes[attr] if @_ts_schema_attributes.key?(attr)
           type ||= begin
-            attr_name = options[:delegate] || attr
-            method_defined = _model_class.method_defined?(attr_name.to_sym)
-            column = !method_defined && _model_class.try(:columns_hash).try(:[], attr_name.to_s)
+            model_method = options[:delegate] || attr
+            resource_method = attr
+
+            model_method_defined = _model_class.method_defined?(model_method.to_sym)
+            resource_method_defined = @_method_added_count[resource_method.to_sym] > 1
+            method_defined = model_method_defined || resource_method_defined
+
+            column = !method_defined && _model_class.try(:columns_hash).try(:[], model_method.to_s)
             column ? Types::SQL.from(column) : Types::Unknown
           end
 
