@@ -185,7 +185,8 @@ module TSSchema
           when ::ActiveRecord::Reflection::HasOneReflection then ->(type) { Types::Maybe.new(type) }
           when ::ActiveRecord::Reflection::HasManyReflection then ->(type) { Types::Array.new(type) }
           when ::ActiveRecord::Reflection::HasAndBelongsToManyReflection then ->(type) { Types::Array.new(type) }
-          else raise RuntimeError
+          when ::ActiveRecord::Reflection::ThroughReflection then wrapper_from_reflection(reflection.send(:delegate_reflection))
+          else raise RuntimeError.new("#{reflection.class.name} not supported")
           end
         end
 
@@ -206,7 +207,7 @@ module TSSchema
           case relationship
           when ::JSONAPI::Relationship::ToOne then ->(type) { type }
           when ::JSONAPI::Relationship::ToMany then ->(type) { Types::Array.new(type) }
-          else raise RuntimeError
+          else raise RuntimeError.new("#{relationship.class.name} not supported")
           end
         end
       end

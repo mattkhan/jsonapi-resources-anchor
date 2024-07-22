@@ -32,6 +32,7 @@ export type Post = {
   relationships: {
     user: User;
     comments: Array<Comment>;
+    participants: Array<User>;
   };
 };
 
