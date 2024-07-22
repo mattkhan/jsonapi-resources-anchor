@@ -1,3 +1,4 @@
+require 'ts_schema/concerns/type_serializable'
 require 'ts_schema/ts_schema'
 require 'ts_schema/config'
 require 'ts_schema/resource'
