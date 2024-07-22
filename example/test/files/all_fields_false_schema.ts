@@ -59,7 +59,7 @@ export type Exhaustive = {
   inferredUnknown: unknown;
   uuid: string;
   string: string;
-  maybeString: Maybe<string>;
+  maybeString: string;
   text: string;
   integer: number;
   float: number;
@@ -77,7 +77,7 @@ export type Exhaustive = {
   enum: unknown;
   virtualUpcasedString: Maybe<string>;
   loljk: never;
-  delegatedMaybeString: Maybe<string>;
+  delegatedMaybeString: string;
   modelOverridden: unknown;
   resourceOverridden: unknown;
 };

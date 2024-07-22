@@ -1,6 +1,7 @@
 module TSSchema
   configure do |c|
     c.field_case = :camel
+    c.use_active_record_presence = true
 
     c.ar_column_to_type = lambda { |column|
       return Types::Reference.new("never") if column.name == 'loljk'

@@ -86,7 +86,17 @@ module TSSchema
               method_defined = model_method_defined || resource_method_defined
 
               column = !method_defined && _model_class.try(:columns_hash).try(:[], model_method.to_s)
-              column ? Types::SQL.from(column) : Types::Unknown
+              if column
+                type = Types::SQL.from(column)
+                check_presence = type.is_a?(Types::Maybe) && TSSchema.config.use_active_record_presence
+                if check_presence && _model_class.validators_on(model_method).any? { |v| v.is_a?(ActiveRecord::Validations::PresenceValidator) }
+                  type.type
+                else
+                  type
+                end
+              else
+                Types::Unknown
+              end
             end
 
             Types::Property.new(attr, type)
