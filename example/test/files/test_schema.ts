@@ -53,11 +53,13 @@ export type Exhaustive = {
     a: "a";
     "b-dash": 1;
     c: Maybe<string>;
+    d_optional?: Maybe<string>;
   };
   assertedMaybeObject: Maybe<{
     a: "a";
     "b-dash": 1;
     c: Maybe<string>;
+    d_optional?: Maybe<string>;
   }>;
   assertedArrayRecord: Array<Record<string, number>>;
   assertedUnion: string | number;

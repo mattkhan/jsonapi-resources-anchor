@@ -3,6 +3,7 @@ class ExhaustiveResource < TSSchema::Resource
     TSSchema::Types::Property.new(:a, TSSchema::Types::Literal.new("a")),
     TSSchema::Types::Property.new("b-dash", TSSchema::Types::Literal.new(1)),
     TSSchema::Types::Property.new(:c, TSSchema::Types::Maybe.new(TSSchema::Types::String)),
+    TSSchema::Types::Property.new(:d_optional, TSSchema::Types::Maybe.new(TSSchema::Types::String), true),
   ])
 
   attribute :asserted_string, TSSchema::Types::String

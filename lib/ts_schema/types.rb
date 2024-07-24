@@ -38,7 +38,7 @@ module TSSchema
     #   @return [String, Symbol]
     # @!attribute [r] type
     #   @return [TSSchema::Types] the types supported in {type_string}
-    Property = Struct.new(:name, :type) do
+    Property = Struct.new(:name, :type, :optional) do
       def format_keys!
         self.name = case TSSchema.config.field_case
         when :camel then name.to_s.underscore.camelize(:lower)
@@ -51,7 +51,7 @@ module TSSchema
       end
 
       def safe_name
-        name.match?(/[^a-zA-Z0-9_]/) ? "\"#{name}\"" : name
+        name.match?(/[^a-zA-Z0-9_]/) ? "\"#{name}\"" : name.to_s + (optional ? "?" : "")
       end
     end
 
