@@ -14,8 +14,8 @@ export type Comment = {
   createdAt: string;
   updatedAt: string;
   relationships: {
-    deletedBy: Maybe<User>;
-    commentable: Maybe<User | Post>;
+    deletedBy?: User;
+    commentable?: User | Post;
   };
 };
 

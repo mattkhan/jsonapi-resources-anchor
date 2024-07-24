@@ -136,7 +136,12 @@ module TSSchema
               ts_schema_relationship.null.present? ? Types::Maybe.new(type) : type
             end
 
-            Types::Property.new(name, relationship_type)
+            use_optional = TSSchema.config.infer_nullable_relationships_as_optional
+            if use_optional && relationship_type.is_a?(Types::Maybe)
+              Types::Property.new(name, relationship_type.type, true)
+            else
+              Types::Property.new(name, relationship_type)
+            end
           end.map(&:format_keys!)
         end
 
