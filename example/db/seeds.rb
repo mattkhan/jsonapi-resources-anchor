@@ -14,6 +14,8 @@ class Seeder
     def seed
       user = User.find_or_create_by!(name: "User", role: :admin)
       log(user)
+      external_user = User.find_or_create_by!(name: "External", role: :external)
+      log(external_user)
       post = Post.find_or_create_by!(user:, description: "hi")
       log(post)
       comment = Comment.find_or_create_by!(user:, commentable: post, text: "hello")
