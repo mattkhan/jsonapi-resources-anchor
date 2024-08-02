@@ -100,7 +100,7 @@ module TSSchema
             end
 
             Types::Property.new(attr, type)
-          end.map(&:format_keys!)
+          end.map(&:format_key!)
         end
 
         # @param included_fields [Array<Symbol>]
@@ -142,7 +142,7 @@ module TSSchema
             else
               Types::Property.new(name, relationship_type)
             end
-          end.map(&:format_keys!)
+          end.map(&:format_key!)
         end
 
         # @param rel [Relationship]

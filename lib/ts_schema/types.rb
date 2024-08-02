@@ -39,7 +39,7 @@ module TSSchema
     # @!attribute [r] type
     #   @return [TSSchema::Types] the types supported in {type_string}
     Property = Struct.new(:name, :type, :optional) do
-      def format_keys!
+      def format_key!
         self.name = case TSSchema.config.field_case
         when :camel then name.to_s.underscore.camelize(:lower)
         when :kebab then name.to_s.underscore.dasherize
