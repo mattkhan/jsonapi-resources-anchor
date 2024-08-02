@@ -115,6 +115,8 @@ module TSSchema
         # @param included_fields [Array<Symbol>]
         # @return [Array<TSSchema::Types::Property>]
         def ts_schema_relationships_properties(included_fields:)
+          @_ts_schema_relationships ||= {}
+
           _relationships.filter_map do |name, rel|
             next unless included_fields.include?(name.to_sym)
             relationship_type = relationship_type_for(rel, rel.resource_klass, name) if @_ts_schema_relationships.exclude?(name)
