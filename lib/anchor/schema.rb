@@ -14,6 +14,7 @@ module Anchor
       def generate(context: {}, adapter: :type_script, include_all_fields: true)
         adapter = case adapter
           when :type_script then Anchor::TypeScript::SchemaGenerator
+          when :json_schema then Anchor::JSONSchema::SchemaGenerator
           else adapter
         end
 

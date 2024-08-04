@@ -13,7 +13,10 @@ class SchemaTest < ActiveSupport::TestCase
   def self.snapshot_test(filename, generate)
     test "generates correct #{filename} schema" do
       schema = generate.call
-      path = Rails.root.join("test/files", "#{filename}.ts")
+      path = Rails.root.join("test/files", filename)
+      unless File.file?(path)
+        File.open(path, 'w') { |file| file.write(schema) }
+      end
       expected_schema = File.read(path)
 
       if ENV['THOR_MERGE'] && expected_schema != schema
@@ -26,7 +29,8 @@ class SchemaTest < ActiveSupport::TestCase
     end
   end
 
-  snapshot_test :schema, -> { Schema.generate }
-  snapshot_test :test_schema, -> { Schema.generate(context: { role: 'test' }) }
-  snapshot_test :all_fields_false_schema, -> { Schema.generate(include_all_fields: false) }
+  snapshot_test "schema.ts", -> { Schema.generate }
+  snapshot_test "test_schema.ts", -> { Schema.generate(context: { role: 'test' }) }
+  snapshot_test "all_fields_false_schema.ts", -> { Schema.generate(include_all_fields: false) }
+  snapshot_test "json_schema.json", -> { Schema.generate(adapter: :json_schema) }
 end

@@ -83,7 +83,7 @@ export type Exhaustive = {
   daterange: unknown;
   enum: unknown;
   virtualUpcasedString: Maybe<string>;
-  loljk: never;
+  loljk: "never";
   delegatedMaybeString: string;
   modelOverridden: unknown;
   resourceOverridden: unknown;
