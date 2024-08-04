@@ -1,7 +1,7 @@
-module TSSchema
+module Anchor
   class << self
     def config
-      @config ||= TSSchema::Config.new
+      @config ||= Anchor::Config.new
     end
 
     def configure

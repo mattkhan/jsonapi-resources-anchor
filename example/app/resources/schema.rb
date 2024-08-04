@@ -1,4 +1,4 @@
-class Schema < TSSchema::Schema
+class Schema < Anchor::Schema
   resource CommentResource
   resource UserResource
   resource PostResource

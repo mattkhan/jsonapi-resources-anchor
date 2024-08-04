@@ -1,5 +1,5 @@
-class UserRoleEnum < TSSchema::Types::Enum
-  schema_name "UserRole"
+class UserRoleEnum < Types::Enum
+  anchor_schema_name "UserRole"
 
   value :admin, "admin"
   value :content_creator, "content_creator"

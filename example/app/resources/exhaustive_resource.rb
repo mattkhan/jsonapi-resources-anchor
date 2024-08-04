@@ -1,20 +1,20 @@
-class ExhaustiveResource < TSSchema::Resource
-  object = TSSchema::Types::Object.new([
-    TSSchema::Types::Property.new(:a, TSSchema::Types::Literal.new("a")),
-    TSSchema::Types::Property.new("b-dash", TSSchema::Types::Literal.new(1)),
-    TSSchema::Types::Property.new(:c, TSSchema::Types::Maybe.new(TSSchema::Types::String)),
-    TSSchema::Types::Property.new(:d_optional, TSSchema::Types::Maybe.new(TSSchema::Types::String), true),
+class ExhaustiveResource < ApplicationResource 
+  object = Types::Object.new([
+    Types::Property.new(:a, Types::Literal.new("a")),
+    Types::Property.new("b-dash", Types::Literal.new(1)),
+    Types::Property.new(:c, Types::Maybe.new(Types::String)),
+    Types::Property.new(:d_optional, Types::Maybe.new(Types::String), true),
   ])
 
-  attribute :asserted_string, TSSchema::Types::String
-  attribute :asserted_number, TSSchema::Types::Number
-  attribute :asserted_boolean, TSSchema::Types::Boolean
-  attribute :asserted_null, TSSchema::Types::Null
-  attribute :asserted_unknown, TSSchema::Types::Unknown
+  attribute :asserted_string, Types::String
+  attribute :asserted_number, Types::Integer
+  attribute :asserted_boolean, Types::Boolean
+  attribute :asserted_null, Types::Null
+  attribute :asserted_unknown, Types::Unknown
   attribute :asserted_object, object
-  attribute :asserted_maybe_object, TSSchema::Types::Maybe.new(object)
-  attribute :asserted_array_record, TSSchema::Types::Array.new(TSSchema::Types::Record.new(TSSchema::Types::Number))
-  attribute :asserted_union, TSSchema::Types::Union.new([TSSchema::Types::String, TSSchema::Types::Number])
+  attribute :asserted_maybe_object, Types::Maybe.new(object)
+  attribute :asserted_array_record, Types::Array.new(Types::Record.new(Types::Integer))
+  attribute :asserted_union, Types::Union.new([Types::String, Types::Float])
   attribute :inferred_unknown
 
   attribute :uuid

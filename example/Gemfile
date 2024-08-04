@@ -28,4 +28,4 @@ group :development do
 end
 
 gem "jsonapi-resources", "~> 0.10.7"
-gem "jsonapi-resources-typescript-gen", ">= 0.0.0.pre", path: ".."
+gem "jsonapi-resources-anchor", ">= 0.0.0.pre", path: ".."
