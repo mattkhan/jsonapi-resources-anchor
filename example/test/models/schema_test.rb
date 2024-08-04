@@ -29,8 +29,8 @@ class SchemaTest < ActiveSupport::TestCase
     end
   end
 
-  snapshot_test "schema.ts", -> { Schema.generate }
+  snapshot_test "schema.ts", -> { Schema.generate(include_all_fields: true) }
   snapshot_test "test_schema.ts", -> { Schema.generate(context: { role: 'test' }) }
-  snapshot_test "all_fields_false_schema.ts", -> { Schema.generate(include_all_fields: false) }
-  snapshot_test "json_schema.json", -> { Schema.generate(adapter: :json_schema) }
+  snapshot_test "all_fields_false_schema.ts", -> { Schema.generate }
+  snapshot_test "json_schema.json", -> { Schema.generate(adapter: :json_schema, include_all_fields: true) }
 end

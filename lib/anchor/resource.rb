@@ -1,12 +1,13 @@
 module Anchor
   class Resource
     delegate_missing_to :@resource_klass
+    attr_reader :resource_klass
 
-    # @param [JSONAPI::Resource] Must include Anchor::Annotatable
+    # @param [JSONAPI::Resource] Must include Anchor::TypeInferable
     def initialize(resource_klass)
       @resource_klass = resource_klass
-      @anchor_attributes = resource_klass.anchor_attributes || {}
-      @anchor_relationships = resource_klass.anchor_relationships || {}
+      @anchor_attributes = resource_klass.try(:anchor_attributes) || {} # optional method from Anchor::Annotatable
+      @anchor_relationships = resource_klass.try(:anchor_relationships) || {} # optional method from Anchor::Annotatable
       @anchor_method_added_count = resource_klass.anchor_method_added_count || Hash.new(0)
     end
 
@@ -17,6 +18,15 @@ module Anchor
     private
 
     delegate :convert_case, to: Anchor::Types
+
+    def schema_fetchable_fields(context:, include_all_fields:)
+      return fields unless statically_determinable_fetchable_fields? && !include_all_fields
+      @resource_klass.fetchable_fields(context)
+    end
+
+    def statically_determinable_fetchable_fields?
+      @resource_klass.singleton_class.method_defined?(:fetchable_fields)
+    end
 
     # @return [Anchor::Types::Property]
     def id_property

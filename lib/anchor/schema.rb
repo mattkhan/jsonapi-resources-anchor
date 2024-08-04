@@ -13,7 +13,7 @@ module Anchor
         @enums.push(enum)
       end
 
-      def generate(context: {}, adapter: :type_script, include_all_fields: true)
+      def generate(context: {}, adapter: :type_script, include_all_fields: false)
         adapter = case adapter
           when :type_script then Anchor::TypeScript::SchemaGenerator
           when :json_schema then Anchor::JSONSchema::SchemaGenerator

@@ -9,9 +9,9 @@ namespace :anchor do
       puts "✅ #{File.basename(path)}"
     end
 
-    write_to "schema.ts", -> { Schema.generate }
+    write_to "schema.ts", -> { Schema.generate(include_all_fields: true) }
     write_to "test_schema.ts", -> { Schema.generate(context: { role: 'test' }) }
-    write_to "all_fields_false_schema.ts", -> { Schema.generate(include_all_fields: false) }
-    write_to "json_schema.json", -> { Schema.generate(adapter: :json_schema) }
+    write_to "all_fields_false_schema.ts", -> { Schema.generate }
+    write_to "json_schema.json", -> { Schema.generate(adapter: :json_schema, include_all_fields: true) }
   end
 end
