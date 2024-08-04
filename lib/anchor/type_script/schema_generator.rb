@@ -2,9 +2,9 @@ module Anchor::TypeScript
   class SchemaGenerator
     attr_reader :context, :include_all_fields
 
-    def initialize(resources:, enums:, context:, include_all_fields:)
-      @resources = resources.map { |r| Anchor::TypeScript::Resource.new(r) }
-      @enums = enums.map { |e| Anchor::TypeScript::Types::Enum.new(e) }
+    def initialize(register:, context:, include_all_fields:)
+      @resources = register.resources.map { |r| Anchor::TypeScript::Resource.new(r) }
+      @enums = register.enums.map { |e| Anchor::TypeScript::Types::Enum.new(e) }
       @context = context
       @include_all_fields = include_all_fields
     end

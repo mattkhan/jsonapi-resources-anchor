@@ -1,6 +1,8 @@
 module Anchor
   class Schema
     class << self
+      Register = Struct.new(:resources, :enums, keyword_init: true)
+
       def resource(resource)
         @resources ||= []
         @resources.push(resource)
@@ -19,8 +21,7 @@ module Anchor
         end
 
         adapter.call(
-          resources: @resources || [],
-          enums: @enums || [],
+          register: Register.new(resources: @resources || [], enums: @enums || []),
           context:,
           include_all_fields:
         )

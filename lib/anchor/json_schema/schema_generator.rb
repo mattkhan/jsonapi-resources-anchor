@@ -3,8 +3,8 @@ module Anchor::JSONSchema
     attr_reader :context, :include_all_fields
     delegate :type_property, to: Anchor::JSONSchema::Serializer
 
-    def initialize(resources:, enums: nil, context:, include_all_fields:)
-      @resources = resources.map { |r| Anchor::JSONSchema::Resource.new(r) }
+    def initialize(register:, context:, include_all_fields:)
+      @resources = register.resources.map { |r| Anchor::JSONSchema::Resource.new(r) }
       @context = context
       @include_all_fields = include_all_fields
     end
