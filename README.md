@@ -1,33 +1,53 @@
 # JSON:API Resource Schema Generation: Anchor
 
-Easily generate TypeScript schemas, JSON Schemas, or any schema of your choice from [cerebris/jsonapi-resources](https://github.com/cerebris/jsonapi-resources) `JSONAPI::Resource` classes.
+Easily generate TypeScript schemas, JSON Schemas, or any schema of your choice
+from [cerebris/jsonapi-resources](https://github.com/cerebris/jsonapi-resources)
+`JSONAPI::Resource` classes.
 
 Ideally, API schemas have the types of each payload fully specified.
 
-To conveniently reach that ideal in a Ruby codebase that doesn't have static type signatures, `Anchor` automates type inference for attributes and relationships via the underlying ActiveRecord model of the `JSONAPI::Resource`.
+To conveniently reach that ideal in a Ruby codebase that doesn't have static
+type signatures, `Anchor` automates type inference for attributes and
+relationships via the underlying ActiveRecord model of the `JSONAPI::Resource`.
 
-If a type for an attribute or relationship can't be inferred or you'd like to specify it statically, you can annotate the `attribute` or `relationship` via types defined in `Anchor::Types`, see [Annotations](#annotations).
+If a type for an attribute or relationship can't be inferred or you'd like to
+specify it statically, you can annotate the `attribute` or `relationship` via
+types defined in `Anchor::Types`, see [Annotations](#annotations).
 
-This gem provides TypeScript and JSON Schema generators with `Anchor::TypeScript::SchemaGenerator` and `Anchor::JSONSchema::SchemaGenerator`.
+This gem provides TypeScript and JSON Schema generators with
+`Anchor::TypeScript::SchemaGenerator` and `Anchor::JSONSchema::SchemaGenerator`.
 
-See the [example](./example) Rails app for a fully functional example using `Anchor`. See [schema_test.rb](./example/test/models/schema_test.rb) for `Schema` generation examples.
+See the [example](./example) Rails app for a fully functional example using
+`Anchor`. See [schema_test.rb](./example/test/models/schema_test.rb) for
+`Schema` generation examples.
 
 ## Inference
 
 ### Attributes
 
-`JSONAPI::Resource` attributes are inferred via introspection of the resource's underlying ActiveRecord model (`JSONAPI::Resources._model_class`).
+`JSONAPI::Resource` attributes are inferred via introspection of the resource's
+underlying ActiveRecord model (`JSONAPI::Resources._model_class`).
 
-`ActiveRecord::Base.columns_hash[attribute]` is used to get the SQL type and is then mapped to an `Anchor::Type` in `Anchor::Types::Inference::ActiveRecord::SQL.from`.
+`ActiveRecord::Base.columns_hash[attribute]` is used to get the SQL type and is
+then mapped to an `Anchor::Type` in
+`Anchor::Types::Inference::ActiveRecord::SQL.from`.
 
-- `Anchor.config.ar_column_to_type` allows custom mappings, see [example/initializers/anchor.rb](./examples/initializers/anchor.rb)
-- `Anchor.config.use_active_record_presence` can be set to `true` to infer nullable attributes (i.e. fields that do not specify `null: false` in schema.rb) as non-null when an unconditional `validates :attribute_name, presence: true` is present on the model
+- `Anchor.config.ar_column_to_type` allows custom mappings, see
+  [example/initializers/anchor.rb](./examples/initializers/anchor.rb)
+- `Anchor.config.use_active_record_presence` can be set to `true` to infer
+  nullable attributes (i.e. fields that do not specify `null: false` in
+  schema.rb) as non-null when an unconditional
+  `validates :attribute_name, presence: true` is present on the model
 
 ### Relationships
 
-`JSONAPI::Resource` relationships refer to other `JSONAPI::Resource` classes, so the `JSONAPI::Resource.anchor_schema_name` of the related relationship is used as a reference in the TypeScript and JSON Schema adapters.
+`JSONAPI::Resource` relationships refer to other `JSONAPI::Resource` classes, so
+the `JSONAPI::Resource.anchor_schema_name` of the related relationship is used
+as a reference in the TypeScript and JSON Schema adapters.
 
-`Anchor` infers whether the associated resource is nullable or an array via `JSONAPI::Resource._model_class.reflections[name]` where `name` is the first element of the `JSONAPI::Resource._relationships` `[name, relationship]` tuples.
+`Anchor` infers whether the associated resource is nullable or an array via
+`JSONAPI::Resource._model_class.reflections[name]` where `name` is the first
+element of the `JSONAPI::Resource._relationships` `[name, relationship]` tuples.
 
 | ActiveRecord Association               | Inferred `Anchor::Type` |
 | -------------------------------------- | ----------------------- |
@@ -37,38 +57,48 @@ See the [example](./example) Rails app for a fully functional example using `Anc
 | `has_many :relations`                  | `Array<Relation>`       |
 | `has_and_belogs_to_many :relations`    | `Array<Relation>`       |
 
-- set `Anchor.config.infer_nullable_relationships_as_optional` to `true` to infer that the property associated with a nullable relationship will not be present if it's null
-  - e.g. in TypeScript, setting the config to true will infer `{ relation?: Relation }` over `{ relation: Maybe<Relation> }`
+- set `Anchor.config.infer_nullable_relationships_as_optional` to `true` to
+  infer that the property associated with a nullable relationship will not be
+  present if it's null
+  - e.g. in TypeScript, setting the config to true will infer
+    `{ relation?: Relation }` over `{ relation: Maybe<Relation> }`
 
 ## Annotations
 
-The APIs of `JSONAPI::Resource.attribute` and `JSONAPI::Resource.relationship` have been modified to take in an optional type parameter.
+The APIs of `JSONAPI::Resource.attribute` and `JSONAPI::Resource.relationship`
+have been modified to take in an optional type parameter.
 
-If the type can be inferred from the underlying ActiveRecord model the type argument isn't required.
+If the type can be inferred from the underlying ActiveRecord model the type
+argument isn't required.
 
-If there is no type argument and the type cannot be inferred, then the type of the property will default to `unknown`.
+If there is no type argument and the type cannot be inferred, then the type of
+the property will default to `unknown`.
 
 The type argument has precedence over the inferred type.
 
 For `.attribute`:
 
-- after the `name` argument, specify any type from the table in [Anchor::Types](#anchor)
+- after the `name` argument, specify any type from the table in
+  [Anchor::Types](#anchortypes)
 
 For `.relationship`:
 
 - after the `name` argument, specify a `Anchor::Types::Relationship`
 
-The APIs of `JSONAPI::Resource.attribute` and `JSONAPI::Resource.relationship` remain the same if a type argument is not given.
+The APIs of `JSONAPI::Resource.attribute` and `JSONAPI::Resource.relationship`
+remain the same if a type argument is not given.
 
 If a type argument is given, the `options` for each will be the third argument.
 
 ## Generators
 
-This gem provides generators for JSON Schema and TypeScript schemas via `Schema.generate(adapter: :type_script | :json_schema)`.
+This gem provides generators for JSON Schema and TypeScript schemas via
+`Schema.generate(adapter: :type_script | :json_schema)`.
 
 ### Custom Generator
 
-You can create your own generator by providing it to `Schema.generate(adapter: MyGenerator)`.
+You can create your own generator by providing it to
+`Schema.generate(adapter: MyGenerator)`.
 
 It should inherit from `Anchor::SchemaGenerator`, e.g.
 
@@ -80,7 +110,9 @@ class MyGenerator < Anchor::SchemaGenerator
 end
 ```
 
-See `Anchor::TypeScript::Resource`, `Anchor::TypeScript::Serializer`, and `Anchor::TypeScript::SchemaGenerator` and the equivalents under `Anchor::JSONSchema` for examples.
+See `Anchor::TypeScript::Resource`, `Anchor::TypeScript::Serializer`, and
+`Anchor::TypeScript::SchemaGenerator` and the equivalents under
+`Anchor::JSONSchema` for examples.
 
 ## Configuration
 
@@ -127,7 +159,8 @@ end
 
 `Schema.generate` will return the schema in a `String`.
 
-Note: Currently, dependent resources and enums do not have their types generated. _All_ resources and enums must be registered as part of the schema.
+Note: Currently, dependent resources and enums do not have their types
+generated. _All_ resources and enums must be registered as part of the schema.
 
 ### `Anchor::Types`
 
@@ -150,7 +183,10 @@ Note: Currently, dependent resources and enums do not have their types generated
 | `Types::Union.new(Ts)`       | `Ts[0] \| Ts[1] \| ...`                                                   |
 | `Types::Object.new(props)`   | `{ [props[0].name]: props[0].type, [props[1].name]: props[1].type, ... }` |
 
-Note: The TypeScript type expression is derived from the `Anchor::TypeScript::Serializer` this gem provides for TypeScript schema generation. See `Anchor::JSONSchema::Serializer` for the given JSON Schema generator.
+Note: The TypeScript type expression is derived from the
+`Anchor::TypeScript::Serializer` this gem provides for TypeScript schema
+generation. See `Anchor::JSONSchema::Serializer` for the given JSON Schema
+generator.
 
 ```rb
 module Anchor::Types
@@ -182,7 +218,8 @@ class UserRoleEnum < Anchor::Types::Enum
 end
 ```
 
-Very similar to [rmosolgo/graphql-ruby](https://github.com/rmosolgo/graphql-ruby) enums.
+Very similar to
+[rmosolgo/graphql-ruby](https://github.com/rmosolgo/graphql-ruby) enums.
 
 ## Example
 
@@ -274,7 +311,8 @@ class Schema < Anchor::Schema
 end
 ```
 
-`Schema.generate(adapter: :type_script)` will return the schema below in a `String`:
+`Schema.generate(adapter: :type_script)` will return the schema below in a
+`String`:
 
 ```ts
 type Maybe<T> = T | null;
