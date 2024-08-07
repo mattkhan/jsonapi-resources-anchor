@@ -14,7 +14,7 @@ module Anchor
     Union = Struct.new(:types)
     Reference = Struct.new(:name)
     Object = Struct.new(:properties)
-    Property = Struct.new(:name, :type, :optional)
+    Property = Struct.new(:name, :type, :optional, :description)
 
     Relationship = Struct.new(:resource, :resources, :null, :null_elements, keyword_init: true)
 

@@ -32,7 +32,12 @@ module Anchor::TypeScript
       end
 
       def serialize_object(type, depth)
-        properties = type.properties.map { |p| "#{safe_name(p)}: #{type_string(p.type, depth + 1)};" }
+        properties = type.properties.flat_map do |p|
+          [
+            p.description && "/** #{p.description} */",
+            "#{safe_name(p)}: #{type_string(p.type, depth + 1)};"
+          ].compact
+        end
         indent = " " * (depth * 2)
         properties = properties.map { |p| p.prepend(indent) }.join("\n")
         ["{", properties, "}".prepend(indent[2..])].join("\n")

@@ -6,7 +6,7 @@ class ExhaustiveResource < ApplicationResource
     Types::Property.new(:d_optional, Types::Maybe.new(Types::String), true),
   ])
 
-  attribute :asserted_string, Types::String
+  attribute :asserted_string, Types::String, description: 'My asserted string.'
   attribute :asserted_number, Types::Integer
   attribute :asserted_boolean, Types::Boolean
   attribute :asserted_null, Types::Null

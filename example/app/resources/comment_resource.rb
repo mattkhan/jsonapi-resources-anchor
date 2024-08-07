@@ -3,7 +3,7 @@ class CommentResource < ApplicationResource
   attribute :created_at
   attribute :updated_at
  
-  relationship :user, to: :one
+  relationship :user, to: :one, description: 'Author of the comment.'
   relationship :deleted_by, to: :one, class_name: "User"
   relationship :commentable, Types::Relationship.new(resources: [UserResource, PostResource], null: true), polymorphic: true, to: :one
 

@@ -39,6 +39,7 @@ export type Post = {
 export type Exhaustive = {
   id: number;
   type: "exhaustives";
+  /** My asserted string. */
   assertedString: string;
   assertedNumber: number;
   assertedBoolean: boolean;

@@ -8,6 +8,8 @@ module Anchor
       @resource_klass = resource_klass
       @anchor_attributes = resource_klass.try(:anchor_attributes) || {} # optional method from Anchor::Annotatable
       @anchor_relationships = resource_klass.try(:anchor_relationships) || {} # optional method from Anchor::Annotatable
+      @anchor_attributes_descriptions = resource_klass.try(:anchor_attributes_descriptions) || {} # optional method from Anchor::Annotatable
+      @anchor_relationships_descriptions = resource_klass.try(:anchor_relationships_descriptions) || {} # optional method from Anchor::Annotatable
       @anchor_method_added_count = resource_klass.anchor_method_added_count || Hash.new(0)
     end
 
@@ -49,7 +51,8 @@ module Anchor
     def anchor_attributes_properties(included_fields:)
       _attributes.except(:id).filter_map do |attr, options|
         next unless included_fields.include?(attr.to_sym)
-        next Anchor::Types::Property.new(convert_case(attr), @anchor_attributes[attr]) if @anchor_attributes.key?(attr)
+        description = @anchor_attributes_descriptions[attr]
+        next Anchor::Types::Property.new(convert_case(attr), @anchor_attributes[attr], false, description) if @anchor_attributes.key?(attr)
 
         type = begin
           model_method = options[:delegate] || attr
@@ -73,7 +76,7 @@ module Anchor
           end
         end
 
-        Anchor::Types::Property.new(convert_case(attr), type)
+        Anchor::Types::Property.new(convert_case(attr), type, false, description)
       end
     end
 
@@ -91,6 +94,7 @@ module Anchor
     def anchor_relationships_properties(included_fields:)
       _relationships.filter_map do |name, rel|
         next unless included_fields.include?(name.to_sym)
+        description = @anchor_relationships_descriptions[name]
         relationship_type = relationship_type_for(rel, rel.resource_klass, name) if @anchor_relationships.exclude?(name)
 
         relationship_type ||= begin
@@ -110,9 +114,9 @@ module Anchor
 
         use_optional = Anchor.config.infer_nullable_relationships_as_optional
         if use_optional && relationship_type.is_a?(Anchor::Types::Maybe)
-          Anchor::Types::Property.new(convert_case(name), relationship_type.type, true)
+          Anchor::Types::Property.new(convert_case(name), relationship_type.type, true, description)
         else
-          Anchor::Types::Property.new(convert_case(name), relationship_type)
+          Anchor::Types::Property.new(convert_case(name), relationship_type, false, description)
         end
       end
     end
