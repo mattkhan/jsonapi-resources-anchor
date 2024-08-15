@@ -23,11 +23,11 @@ module Anchor
 
     def schema_fetchable_fields(context:, include_all_fields:)
       return fields unless statically_determinable_fetchable_fields? && !include_all_fields
-      @resource_klass.fetchable_fields(context)
+      @resource_klass.anchor_fetchable_fields(context)
     end
 
     def statically_determinable_fetchable_fields?
-      @resource_klass.singleton_class.method_defined?(:fetchable_fields)
+      @resource_klass.singleton_class.method_defined?(:anchor_fetchable_fields)
     end
 
     # @return [Anchor::Types::Property]
