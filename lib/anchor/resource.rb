@@ -65,6 +65,7 @@ module Anchor
           column = !method_defined && _model_class.try(:columns_hash).try(:[], model_method.to_s)
           if column
             type = Anchor::Types::Inference::ActiveRecord::SQL.from(column)
+            description ||= column.comment
             check_presence = type.is_a?(Anchor::Types::Maybe) && Anchor.config.use_active_record_presence
             if check_presence && _model_class.validators_on(model_method).any? { |v| v.is_a?(ActiveRecord::Validations::PresenceValidator) }
               type.type

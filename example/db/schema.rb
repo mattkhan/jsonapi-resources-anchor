@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_21_184631) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_15_211806) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_184631) do
     t.string "loljk"
     t.string "model_overridden"
     t.string "resource_overridden"
+    t.string "with_comment", comment: "This is a comment."
   end
 
   create_table "posts", force: :cascade do |t|

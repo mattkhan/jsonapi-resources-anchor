@@ -91,4 +91,6 @@ export type Exhaustive = {
   delegatedMaybeString: string;
   modelOverridden: unknown;
   resourceOverridden: unknown;
+  /** This is a comment. */
+  withComment: Maybe<string>;
 };

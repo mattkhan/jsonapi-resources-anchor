@@ -40,6 +40,7 @@ class ExhaustiveResource < ApplicationResource
   attribute :delegated_maybe_string, delegate: :maybe_string
   attribute :model_overridden
   attribute :resource_overridden
+  attribute :with_comment
 
   def asserted_string = "asserted_string"
 
