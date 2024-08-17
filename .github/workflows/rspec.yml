@@ -1,4 +1,4 @@
-name: Example Schema Snapshot Test
+name: RSpec
 
 on:
   pull_request:
@@ -6,12 +6,8 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  rspec:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: example
 
     env:
       RAILS_ENV: test
@@ -35,13 +31,13 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          working-directory: example
           bundler-cache: true
 
       - name: Set up database
+        working-directory: spec/example
         run: |
           bin/rails db:create
           bin/rails db:schema:load
 
-      - name: Run tests
-        run: bin/rails test -b
+      - name: Run specs
+        run: bundle exec rspec

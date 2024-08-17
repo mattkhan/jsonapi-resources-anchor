@@ -1,6 +1,7 @@
-require "test_helper"
+require "rails_helper"
+require "thor"
 
-class SchemaTest < ActiveSupport::TestCase
+RSpec.describe "Example" do
   class SnapshotUpdate < Thor
     include Thor::Actions
 
@@ -11,7 +12,7 @@ class SchemaTest < ActiveSupport::TestCase
   end
 
   def self.snapshot_test(filename, generate)
-    test "generates correct #{filename} schema" do
+    it "generates correct #{filename} schema" do
       schema = generate.call
       path = Rails.root.join("test/files", filename)
       unless File.file?(path)
@@ -21,11 +22,11 @@ class SchemaTest < ActiveSupport::TestCase
 
       if ENV['THOR_MERGE'] && expected_schema != schema
         SnapshotUpdate.prompt(path, schema)
-        assert_equal File.read(path), schema
+        expect(File.read(path)).to eql(schema)
         return
       end
 
-      assert_equal expected_schema, schema
+      expect(expected_schema).to eql(schema)
     end
   end
 
