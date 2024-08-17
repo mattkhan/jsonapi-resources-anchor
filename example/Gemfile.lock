@@ -3,6 +3,7 @@ PATH
   specs:
     jsonapi-resources-anchor (0.0.0.pre)
       jsonapi-resources (~> 0.1)
+      rails (>= 7.0)
 
 GEM
   remote: https://rubygems.org/
