@@ -10,7 +10,7 @@ module Anchor::TypeScript
         when Anchor::Types::Boolean.singleton_class then "boolean"
         when Anchor::Types::Null.singleton_class then "null"
         when Anchor::Types::Record, Anchor::Types::Record.singleton_class then "Record<string, #{type_string(type.try(:value_type) || Anchor::Types::Unknown)}>"
-        when Anchor::Types::Union then type.types.map { |type| type_string(type, depth) }.join(' | ')
+        when Anchor::Types::Union then type.types.map { |type| type_string(type, depth) }.join(" | ")
         when Anchor::Types::Maybe then "Maybe<#{type_string(type.type, depth)}>"
         when Anchor::Types::Array then "Array<#{type_string(type.type, depth)}>"
         when Anchor::Types::Literal then serialize_literal(type.value)

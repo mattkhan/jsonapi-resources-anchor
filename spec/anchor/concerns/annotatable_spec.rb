@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Anchor::Annotatable do
-  describe 'super spying' do
+  describe "super spying" do
     let(:subklass) do
       Class.new do
         class << self
@@ -19,8 +19,8 @@ RSpec.describe Anchor::Annotatable do
         allow(subklass).to receive(:attribute).and_call_original
       end
 
-      context 'without annotations' do
-        it 'sends the correct args to super' do
+      context "without annotations" do
+        it "sends the correct args to super" do
           Class.new(subklass) do
             include Anchor::Annotatable
 
@@ -37,8 +37,8 @@ RSpec.describe Anchor::Annotatable do
         end
       end
 
-      context 'with annotations' do
-        it 'sends the correct args to super' do
+      context "with annotations" do
+        it "sends the correct args to super" do
           Class.new(subklass) do
             include Anchor::Annotatable
 
@@ -64,13 +64,13 @@ RSpec.describe Anchor::Annotatable do
       end
     end
 
-    describe '.relationship' do
+    describe ".relationship" do
       before do
         allow(subklass).to receive(:relationship)
       end
 
-      context 'without annotations' do
-        it 'sends the correct args to super' do
+      context "without annotations" do
+        it "sends the correct args to super" do
           Class.new(subklass) do
             include Anchor::Annotatable
 
@@ -86,8 +86,8 @@ RSpec.describe Anchor::Annotatable do
         end
       end
 
-      context 'with annotations' do
-        it 'sends the correct args to super' do
+      context "with annotations" do
+        it "sends the correct args to super" do
           Class.new(subklass) do
             include Anchor::Annotatable
 
@@ -116,12 +116,12 @@ RSpec.describe Anchor::Annotatable do
     end
   end
 
-  describe 'JSONAPI::Resource integrations' do
-    describe '.attribute' do
-      around { |example| stub_jsonapi_resource_subclass('UserResource', &example) }
+  describe "JSONAPI::Resource integrations" do
+    describe ".attribute" do
+      around { |example| stub_jsonapi_resource_subclass("UserResource", &example) }
 
-      context 'without anchor annotations' do
-        it 'does not store annotations' do
+      context "without anchor annotations" do
+        it "does not store annotations" do
           UserResource.instance_eval do
             include Anchor::Annotatable
 
@@ -141,8 +141,8 @@ RSpec.describe Anchor::Annotatable do
         end
       end
 
-      context 'with anchor annotations' do
-        it 'stores annotations' do
+      context "with anchor annotations" do
+        it "stores annotations" do
           login_count_description = "Number of successful logins."
 
           UserResource.class_eval do
@@ -165,11 +165,11 @@ RSpec.describe Anchor::Annotatable do
       end
     end
 
-    describe '.relationship' do
-      around { |example| stub_jsonapi_resource_subclass('UserResource', &example) }
+    describe ".relationship" do
+      around { |example| stub_jsonapi_resource_subclass("UserResource", &example) }
 
-      context 'without anchor annotations' do
-        it 'does not store annotations' do
+      context "without anchor annotations" do
+        it "does not store annotations" do
           UserResource.class_eval do
             include Anchor::Annotatable
 
@@ -186,8 +186,8 @@ RSpec.describe Anchor::Annotatable do
         end
       end
 
-      context 'with anchor annotations' do
-        it 'stores annotations' do
+      context "with anchor annotations" do
+        it "stores annotations" do
           UserResource.class_eval do
             include Anchor::Annotatable
 

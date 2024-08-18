@@ -25,7 +25,7 @@ class CreateExhaustives < ActiveRecord::Migration[7.1]
       t.daterange :daterange, null: false
       t.enum :enum, enum_type: :exhaustive_enum, default: "sample", null: false
       t.uuid :uuid, null: false
-      t.virtual :virtual_upcased_string, type: :string, as: 'upper(string)', stored: true
+      t.virtual :virtual_upcased_string, type: :string, as: "upper(string)", stored: true
 
       t.timestamps
     end
