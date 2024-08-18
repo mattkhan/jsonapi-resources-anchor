@@ -382,5 +382,6 @@ export enum UserRole {
 
 #### References
 
+- [@nopelluhh](https://github.com/nopelluhh)
 - [ElMassimo/types_from_serializers](https://github.com/ElMassimo/types_from_serializers)
 - [rmosolgo/graphql-ruby](https://github.com/rmosolgo/graphql-ruby)
