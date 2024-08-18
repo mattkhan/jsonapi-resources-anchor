@@ -13,8 +13,23 @@ module Anchor
     Literal = Struct.new(:value)
     Union = Struct.new(:types)
     Reference = Struct.new(:name)
-    Object = Struct.new(:properties)
     Property = Struct.new(:name, :type, :optional, :description)
+    class Object
+      attr_reader :properties
+
+      def initialize(properties)
+        @properties = properties
+      end
+
+      class << self
+        attr_reader :properties
+
+        def property(name, type, optional: nil, description: nil)
+          @properties ||= []
+          @properties.push(Property.new(name, type, optional, description))
+        end
+      end
+    end
 
     Relationship = Struct.new(:resource, :resources, :null, :null_elements, keyword_init: true)
 

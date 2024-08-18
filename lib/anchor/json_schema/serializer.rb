@@ -18,7 +18,7 @@ module Anchor::JSONSchema
         when Anchor::Types::Array then { type: "array", items: type_property(type.type) }
         when Anchor::Types::Literal then { enum: [type.value] }
         when Anchor::Types::Reference then { "$ref" => "#/$defs/#{type.name}" }
-        when Anchor::Types::Object then serialize_object(type)
+        when Anchor::Types::Object, Anchor::Types::Object.singleton_class then serialize_object(type)
         when Anchor::Types::Enum.singleton_class then { enum: type.values.map(&:second) }
         when Anchor::Types::Unknown.singleton_class then {}
         else raise RuntimeError

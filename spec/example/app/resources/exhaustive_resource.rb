@@ -1,18 +1,18 @@
 class ExhaustiveResource < ApplicationResource
-  object = Types::Object.new([
-    Types::Property.new(:a, Types::Literal.new("a")),
-    Types::Property.new("b-dash", Types::Literal.new(1)),
-    Types::Property.new(:c, Types::Maybe.new(Types::String)),
-    Types::Property.new(:d_optional, Types::Maybe.new(Types::String), true),
-  ])
+  class AssertedObject < Types::Object
+    property :a, Types::Literal.new("a")
+    property "b-dash", Types::Literal.new(1)
+    property :c, Types::Maybe.new(Types::String)
+    property :d_optional, Types::Maybe.new(Types::String), optional: true
+  end
 
   attribute :asserted_string, Types::String, description: "My asserted string."
   attribute :asserted_number, Types::Integer
   attribute :asserted_boolean, Types::Boolean
   attribute :asserted_null, Types::Null
   attribute :asserted_unknown, Types::Unknown
-  attribute :asserted_object, object
-  attribute :asserted_maybe_object, Types::Maybe.new(object)
+  attribute :asserted_object, AssertedObject
+  attribute :asserted_maybe_object, Types::Maybe.new(AssertedObject)
   attribute :asserted_array_record, Types::Array.new(Types::Record.new(Types::Integer))
   attribute :asserted_union, Types::Union.new([Types::String, Types::Float])
   attribute :inferred_unknown

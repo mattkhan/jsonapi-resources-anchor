@@ -202,6 +202,14 @@ module Anchor::Types
 end
 ```
 
+#### `Anchor::Types::Object`
+
+```rb
+class CustomPayload < Anchor::Types::Object
+  property :id, Anchor::Types::String, optional: true, description: "ID of payload."
+end
+```
+
 #### `Anchor::Types::Enum`
 
 ```rb
