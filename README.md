@@ -90,6 +90,17 @@ remain the same if a type argument is not given.
 
 If a type argument is given, the `options` for each will be the third argument.
 
+### Descriptions
+
+If the `description` key is present in the options to `.attribute` or
+`.relationship`, it will be used in the provided TypeScript Schema generator as
+a comment for the property. The comment should show up in the LSP hover info.
+
+By default, the `description` is inferred from the ActiveRecord column comment
+if it exists. Examples of both in
+[spec/example/resources/exhaustive_resource](./spec/example/app/resources/exhaustive_resource.rb)
+and its resulting [TypeScript schema](./spec/example/test/files/schema.ts).
+
 ## Generators
 
 This gem provides generators for JSON Schema and TypeScript schemas via

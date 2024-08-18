@@ -9,15 +9,10 @@ RSpec.describe "Example" do
       unless File.file?(path)
         File.open(path, "w") { |file| file.write(schema) }
       end
-      expected_schema = File.read(path)
 
-      if ENV["THOR_MERGE"] && expected_schema != schema
-        SnapshotUpdate.prompt(path, schema)
-        expect(File.read(path)).to eql(schema)
-        return
-      end
+      SnapshotUpdate.prompt(path, schema) if ENV["THOR_MERGE"] && File.read(path) != schema
 
-      expect(expected_schema).to eql(schema)
+      expect(File.read(path)).to eql(schema)
     end
   end
 

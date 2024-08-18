@@ -15,6 +15,7 @@ class ExhaustiveResource < ApplicationResource
   attribute :asserted_maybe_object, Types::Maybe.new(AssertedObject)
   attribute :asserted_array_record, Types::Array.new(Types::Record.new(Types::Integer))
   attribute :asserted_union, Types::Union.new([Types::String, Types::Float])
+  attribute :with_description, Types::String, description: "This is a provided description."
   attribute :inferred_unknown
 
   attribute :uuid
@@ -63,4 +64,6 @@ class ExhaustiveResource < ApplicationResource
   def inferred_unknown = nil
 
   def resource_overridden = "resource_overridden"
+
+  def with_description = "with_description"
 end
