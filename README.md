@@ -235,6 +235,21 @@ class UserRoleEnum < Anchor::Types::Enum
   value :guest, "guest"
   value :system, "system"
 end
+
+# alternatively
+class User < ApplicationRecord
+  enum :role, {
+    admin: "admin",
+    conent_creator: "content_creator",
+    external: "external",
+    guest: "guest",
+    system: "system",
+  }
+end
+
+class UserRoleEnum < Anchor::Types::Enum
+  User.roles.each { |key, val| value key, val }
+end
 ```
 
 Very similar to
