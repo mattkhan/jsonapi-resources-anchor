@@ -1,4 +1,4 @@
-class ExhaustiveResource < ApplicationResource 
+class ExhaustiveResource < ApplicationResource
   object = Types::Object.new([
     Types::Property.new(:a, Types::Literal.new("a")),
     Types::Property.new("b-dash", Types::Literal.new(1)),

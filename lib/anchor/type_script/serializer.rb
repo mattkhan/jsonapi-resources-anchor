@@ -1,7 +1,9 @@
 module Anchor::TypeScript
   class Serializer
-    class << self 
-      def type_string(type, depth=1)
+    class << self
+      # rubocop:disable Layout/LineLength
+
+      def type_string(type, depth = 1)
         case type
         when Anchor::Types::String.singleton_class then "string"
         when Anchor::Types::BigDecimal.singleton_class then "string"
@@ -21,6 +23,7 @@ module Anchor::TypeScript
         else raise RuntimeError
         end
       end
+      # rubocop:enable Layout/LineLength
 
       private
 
@@ -35,7 +38,7 @@ module Anchor::TypeScript
         properties = type.properties.flat_map do |p|
           [
             p.description && "/** #{p.description} */",
-            "#{safe_name(p)}: #{type_string(p.type, depth + 1)};"
+            "#{safe_name(p)}: #{type_string(p.type, depth + 1)};",
           ].compact
         end
         indent = " " * (depth * 2)
@@ -45,7 +48,11 @@ module Anchor::TypeScript
 
       def safe_name(property)
         name = property.name
-        name.match?(/[^a-zA-Z0-9_]/) ? "\"#{name}\"" : name.to_s + (property.optional ? "?" : "")
+        if name.match?(/[^a-zA-Z0-9_]/)
+          "\"#{name}\""
+        else
+          name.to_s + (property.optional ? "?" : "")
+        end
       end
     end
   end

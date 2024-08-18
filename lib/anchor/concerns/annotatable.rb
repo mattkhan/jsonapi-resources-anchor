@@ -4,7 +4,10 @@ module Anchor
 
     included do
       class << self
-        attr_reader :anchor_attributes, :anchor_relationships, :anchor_attributes_descriptions, :anchor_relationships_descriptions
+        attr_reader :anchor_attributes,
+          :anchor_relationships,
+          :anchor_attributes_descriptions,
+          :anchor_relationships_descriptions
 
         # @param name [String, Symbol]
         # @param annotation_or_options [Anchor::Types, Hash, NilClass]

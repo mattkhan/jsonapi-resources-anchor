@@ -30,7 +30,12 @@ module Anchor::JSONSchema
     # @return [Hash{Symbol, String => Anchor::Types}]
     def definitions
       resources.map do |resource|
-        { resource.anchor_schema_name => type_property(resource.express(context: @context, include_all_fields: @include_all_fields)) }
+        {
+          resource.anchor_schema_name => type_property(resource.express(
+            context: @context,
+            include_all_fields: @include_all_fields,
+          )),
+        }
       end.reduce(&:merge)
     end
   end

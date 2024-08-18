@@ -1,6 +1,6 @@
 module Anchor::JSONSchema
   class Serializer
-    class << self 
+    class << self
       def type_property(type)
         case type
         when Anchor::Types::String.singleton_class then { type: "string" }
@@ -9,7 +9,10 @@ module Anchor::JSONSchema
         when Anchor::Types::Integer.singleton_class then { type: "number" }
         when Anchor::Types::Boolean.singleton_class then { type: "boolean" }
         when Anchor::Types::Null.singleton_class then { type: "null" }
-        when Anchor::Types::Record, Anchor::Types::Record.singleton_class then { type: "object", additionalProperties: "true" }
+        when Anchor::Types::Record, Anchor::Types::Record.singleton_class then {
+          type: "object",
+          additionalProperties: "true",
+        }
         when Anchor::Types::Union then { oneOf: type.types.map { |type| type_property(type) } }
         when Anchor::Types::Maybe then type_property(Anchor::Types::Union.new([type.type, Anchor::Types::Null]))
         when Anchor::Types::Array then { type: "array", items: type_property(type.type) }

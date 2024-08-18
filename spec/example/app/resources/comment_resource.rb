@@ -2,10 +2,13 @@ class CommentResource < ApplicationResource
   attribute :text
   attribute :created_at
   attribute :updated_at
- 
+
   relationship :user, to: :one, description: "Author of the comment."
   relationship :deleted_by, to: :one, class_name: "User"
-  relationship :commentable, Types::Relationship.new(resources: [UserResource, PostResource], null: true), polymorphic: true, to: :one
+  relationship :commentable,
+    Types::Relationship.new(resources: [UserResource, PostResource], null: true),
+    polymorphic: true,
+    to: :one
 
   def self.anchor_fetchable_fields(context)
     case context[:role]

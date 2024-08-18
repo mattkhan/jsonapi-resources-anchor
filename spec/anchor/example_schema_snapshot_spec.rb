@@ -1,5 +1,6 @@
 require "rails_helper"
 
+# rubocop:disable RSpec/EmptyExampleGroup
 RSpec.describe "Example" do
   def self.snapshot_test(filename, generate)
     it "generates correct #{filename} schema" do
@@ -25,3 +26,4 @@ RSpec.describe "Example" do
   snapshot_test "all_fields_false_schema.ts", -> { Schema.generate }
   snapshot_test "json_schema.json", -> { Schema.generate(adapter: :json_schema, include_all_fields: true) }
 end
+# rubocop:enable RSpec/EmptyExampleGroup

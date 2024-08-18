@@ -15,7 +15,9 @@ module Anchor::TypeScript
       private
 
       def named_constants
-        values.map { |name, value| "  #{name.to_s.camelize} = #{Anchor::TypeScript::Serializer.type_string(value)}," }.join("\n")
+        values.map do |name, value|
+          "  #{name.to_s.camelize} = #{Anchor::TypeScript::Serializer.type_string(value)},"
+        end.join("\n")
       end
     end
   end

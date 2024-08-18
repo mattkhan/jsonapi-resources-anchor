@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.describe Anchor::TypeInferable do
   describe "super spying" do
-    let(:subklass) { Class.new }
-
     subject(:klass) do
       Class.new(subklass) do
         include Anchor::TypeInferable
       end
     end
+
+    let(:subklass) { Class.new }
 
     before do
       allow(subklass).to receive(:method_added).and_call_original
@@ -30,7 +30,7 @@ RSpec.describe Anchor::TypeInferable do
     describe ".anchor_schema_name" do
       subject(:anchor_schema_name) { UserResource.anchor_schema_name }
 
-      context "provided schema name" do
+      context "with provided schema name" do
         it "uses the provided schema name" do
           UserResource.class_eval do
             include Anchor::TypeInferable

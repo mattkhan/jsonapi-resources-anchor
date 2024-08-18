@@ -6,7 +6,7 @@ module Anchor::Types::Inference
         case relationship
         when ::JSONAPI::Relationship::ToOne then ->(type) { type }
         when ::JSONAPI::Relationship::ToMany then ->(type) { Types::Array.new(type) }
-        else raise RuntimeError.new("#{relationship.class.name} not supported")
+        else raise "#{relationship.class.name} not supported"
         end
       end
     end

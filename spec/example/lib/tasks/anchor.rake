@@ -4,7 +4,7 @@ namespace :anchor do
     puts "Generating JSONAPI::Resource Anchor schemas..."
 
     def write_to(filename, generate)
-      path = Rails.root.join("test/files", "#{filename}")
+      path = Rails.root.join("test/files", filename)
       File.open(path, "w") { |f| f.write(generate.call) }
       puts "✅ #{File.basename(path)}"
     end

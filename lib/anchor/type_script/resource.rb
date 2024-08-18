@@ -7,7 +7,8 @@ module Anchor::TypeScript
         Array.wrap(anchor_attributes_properties(included_fields:)) +
         Array.wrap(anchor_relationships_property(included_fields:))
 
-      "export type #{anchor_schema_name} = " + Anchor::TypeScript::Serializer.type_string(Anchor::Types::Object.new(properties)) + ";"
+      expression = Anchor::TypeScript::Serializer.type_string(Anchor::Types::Object.new(properties))
+      "export type #{anchor_schema_name} = " + expression + ";"
     end
   end
 end

@@ -15,15 +15,15 @@ module Anchor
 
       def generate(context: {}, adapter: :type_script, include_all_fields: false)
         adapter = case adapter
-          when :type_script then Anchor::TypeScript::SchemaGenerator
-          when :json_schema then Anchor::JSONSchema::SchemaGenerator
-          else adapter
+        when :type_script then Anchor::TypeScript::SchemaGenerator
+        when :json_schema then Anchor::JSONSchema::SchemaGenerator
+        else adapter
         end
 
         adapter.call(
           register: Register.new(resources: @resources || [], enums: @enums || []),
           context:,
-          include_all_fields:
+          include_all_fields:,
         )
       end
     end

@@ -32,7 +32,7 @@ RSpec.describe Anchor::Annotatable do
           expect(subklass).to have_received(:attribute).with(:role, {
             delegate: :computed_role,
             format: :some_format,
-            description: "Test"
+            description: "Test",
           }).once
         end
       end
@@ -52,13 +52,13 @@ RSpec.describe Anchor::Annotatable do
           expect(subklass).to have_received(:attribute).with(:role, {
             delegate: :computed_role,
             format: :some_format,
-            description: "Test"
+            description: "Test",
           }).once
 
           expect(subklass).to have_received(:attribute).with(:another_one, {
             delegate: :another,
             format: :another_format,
-            description: "Another"
+            description: "Another",
           }).once
         end
       end
@@ -92,8 +92,18 @@ RSpec.describe Anchor::Annotatable do
             include Anchor::Annotatable
 
             relationship :account, Anchor::Types::String, to: :one
-            relationship :comments, Anchor::Types::String, to: :many, acts_as_set: true, exclude_links: :default, description: "Test"
-            relationship :another_one, nil, to: :many, description: "Another", acts_as_set: false, exclude_links: :default
+            relationship :comments,
+              Anchor::Types::String,
+              to: :many,
+              acts_as_set: true,
+              exclude_links: :default,
+              description: "Test"
+            relationship :another_one,
+              nil,
+              to: :many,
+              description: "Another",
+              acts_as_set: false,
+              exclude_links: :default
           end
 
           expect(subklass).to have_received(:relationship).with(:account, { to: :one }).once
@@ -136,7 +146,7 @@ RSpec.describe Anchor::Annotatable do
           expect(UserResource._attributes).to match({
             id: anything,
             name: {},
-            role: { delegate: :computed_role, format: :some_format }
+            role: { delegate: :computed_role, format: :some_format },
           })
         end
       end
@@ -152,14 +162,17 @@ RSpec.describe Anchor::Annotatable do
             attribute :login_count, Anchor::Types::Integer, format: :some_format, description: login_count_description
           end
 
-          expect(UserResource.anchor_attributes).to eql({ name: Anchor::Types::String, login_count: Anchor::Types::Integer })
+          expect(UserResource.anchor_attributes).to eql({
+            name: Anchor::Types::String,
+            login_count: Anchor::Types::Integer,
+          })
           expect(UserResource.anchor_attributes_descriptions).to eql({ login_count: login_count_description })
 
           expect(UserResource.fields).to contain_exactly(:id, :name, :login_count)
           expect(UserResource._attributes).to match({
             id: anything,
             name: {},
-            login_count: { format: :some_format, description: login_count_description }
+            login_count: { format: :some_format, description: login_count_description },
           })
         end
       end
@@ -182,7 +195,10 @@ RSpec.describe Anchor::Annotatable do
 
           expect(UserResource.fields).to contain_exactly(:id, :user, :comments)
           expect(UserResource._relationships.map(&:first)).to contain_exactly(:user, :comments)
-          expect(UserResource._relationships.map(&:second).map(&:resource_klass)).to contain_exactly(UserResource, CommentResource)
+          expect(UserResource._relationships.map(&:second).map(&:resource_klass)).to contain_exactly(
+            UserResource,
+            CommentResource,
+          )
         end
       end
 
@@ -192,8 +208,18 @@ RSpec.describe Anchor::Annotatable do
             include Anchor::Annotatable
 
             relationship :user, Anchor::Types::Relationship.new(resource: UserResource, null: true), to: :one
-            relationship :comments, Anchor::Types::Relationship.new(resource: CommentResource), to: :many, acts_as_set: true, exclude_links: :default, description: "Comments"
-            relationship :exhaustives, nil, to: :many, description: "Exhaustives", acts_as_set: false, exclude_links: :default
+            relationship :comments,
+              Anchor::Types::Relationship.new(resource: CommentResource),
+              to: :many,
+              acts_as_set: true,
+              exclude_links: :default,
+              description: "Comments"
+            relationship :exhaustives,
+              nil,
+              to: :many,
+              description: "Exhaustives",
+              acts_as_set: false,
+              exclude_links: :default
           end
 
           expect(UserResource.anchor_relationships).to eql({
@@ -207,7 +233,11 @@ RSpec.describe Anchor::Annotatable do
 
           expect(UserResource.fields).to contain_exactly(:id, :user, :comments, :exhaustives)
           expect(UserResource._relationships.map(&:first)).to contain_exactly(:user, :comments, :exhaustives)
-          expect(UserResource._relationships.map(&:second).map(&:resource_klass)).to contain_exactly(UserResource, CommentResource, ExhaustiveResource)
+          expect(UserResource._relationships.map(&:second).map(&:resource_klass)).to contain_exactly(
+            UserResource,
+            CommentResource,
+            ExhaustiveResource,
+          )
         end
       end
     end

@@ -1,6 +1,8 @@
 module Anchor::Types::Inference
   module ActiveRecord
     class << self
+      # rubocop:disable Layout/LineLength
+
       # @return [Proc{Type => Type, Anchor::Types::Maybe<Type>, Anchor::Types::Array<Type>}]
       def wrapper_from_reflection(reflection)
         case reflection
@@ -9,11 +11,13 @@ module Anchor::Types::Inference
         when ::ActiveRecord::Reflection::HasManyReflection then ->(type) { Types::Array.new(type) }
         when ::ActiveRecord::Reflection::HasAndBelongsToManyReflection then ->(type) { Types::Array.new(type) }
         when ::ActiveRecord::Reflection::ThroughReflection then wrapper_from_reflection(reflection.send(:delegate_reflection))
-        else raise RuntimeError.new("#{reflection.class.name} not supported")
+        else raise "#{reflection.class.name} not supported"
         end
       end
+      # rubocop:enable Layout/LineLength
 
       private
+
       # @param reflection [::ActiveRecord::Reflection::BelongsToReflection]
       # @param type [Anchor::Types]
       # @return [Anchor::Types::Maybe<Type>, Type]
@@ -48,7 +52,7 @@ module Anchor::Types::Inference
           when :date then Types::String
           when :datetime then Types::String
           when :decimal then Types::BigDecimal
-          when :float  then Types::Float
+          when :float then Types::Float
           when :integer then Types::Integer
           when :json then Types::Record
           when :jsonb then Types::Record
