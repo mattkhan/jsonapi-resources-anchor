@@ -1,3 +1,4 @@
+# rubocop:disable RSpec/RemoveConst, Security/Eval
 def stub_jsonapi_resource_subclass(name, &example)
   previously_defined = Object.const_defined?(name)
   previous_klass = name.constantize
@@ -16,3 +17,4 @@ def stub_jsonapi_resource_subclass(name, &example)
   Object.send(:remove_const, name)
   Object.const_set(name, previous_klass) if previously_defined
 end
+# rubocop:enable RSpec/RemoveConst, Security/Eval

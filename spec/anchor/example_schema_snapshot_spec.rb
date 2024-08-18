@@ -1,16 +1,6 @@
 require "rails_helper"
-require "thor"
 
 RSpec.describe "Example" do
-  class SnapshotUpdate < Thor
-    include Thor::Actions
-
-    def self.prompt(...) = new.prompt(...)
-
-    desc "prompt", "Prompt user to update snapshot"
-    def prompt(...) = create_file(...)
-  end
-
   def self.snapshot_test(filename, generate)
     it "generates correct #{filename} schema" do
       schema = generate.call
