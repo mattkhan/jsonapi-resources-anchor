@@ -17,9 +17,10 @@ types defined in `Anchor::Types`, see [Annotations](#annotations).
 This gem provides TypeScript and JSON Schema generators with
 `Anchor::TypeScript::SchemaGenerator` and `Anchor::JSONSchema::SchemaGenerator`.
 
-See the [example](./example) Rails app for a fully functional example using
-`Anchor`. See [schema_test.rb](./example/test/models/schema_test.rb) for
-`Schema` generation examples.
+See the [example](./spec/example) Rails app for a fully functional example using
+`Anchor`. See
+[example_schema_snapshot_spec.rb](./spec/anchor/example_schema_snapshot_spec.rb)
+for `Schema` generation examples.
 
 ## Inference
 
@@ -33,7 +34,7 @@ then mapped to an `Anchor::Type` in
 `Anchor::Types::Inference::ActiveRecord::SQL.from`.
 
 - `Anchor.config.ar_column_to_type` allows custom mappings, see
-  [example/initializers/anchor.rb](./examples/initializers/anchor.rb)
+  [spec/example/config/initializers/anchor.rb](./spec/example/config/initializers/anchor.rb)
 - `Anchor.config.use_active_record_presence` can be set to `true` to infer
   nullable attributes (i.e. fields that do not specify `null: false` in
   schema.rb) as non-null when an unconditional
@@ -98,7 +99,7 @@ a comment for the property. The comment should show up in the LSP hover info.
 
 By default, the `description` is inferred from the ActiveRecord column comment
 if it exists. Examples of both in
-[spec/example/resources/exhaustive_resource](./spec/example/app/resources/exhaustive_resource.rb)
+[spec/example/app/resources/exhaustive_resource.rb](./spec/example/app/resources/exhaustive_resource.rb)
 and its resulting [TypeScript schema](./spec/example/test/files/schema.ts).
 
 ## Generators
