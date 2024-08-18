@@ -22,3 +22,12 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
 end
+
+group :development do
+  gem "rubocop", "~> 1.62", require: false
+  gem "rubocop-ast", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-shopify", "~> 2.15", ">= 2.15.1", require: false
+end
