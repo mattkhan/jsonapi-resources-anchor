@@ -39,5 +39,8 @@ jobs:
           bin/rails db:create
           bin/rails db:schema:load
 
+      - name: Run RuboCop
+        run: bundle exec rubocop
+
       - name: Run specs
         run: bundle exec rspec
