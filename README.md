@@ -97,8 +97,9 @@ If the `description` key is present in the options to `.attribute` or
 `.relationship`, it will be used in the provided TypeScript Schema generator as
 a comment for the property. The comment should show up in the LSP hover info.
 
-By default, the `description` is inferred from the ActiveRecord column comment
-if it exists. Examples of both in
+With `Anchor.config.use_active_record_presence = true`, a default `description`
+will be inferred from the ActiveRecord column comment if it exists. Examples of
+both in
 [spec/example/app/resources/exhaustive_resource.rb](./spec/example/app/resources/exhaustive_resource.rb)
 and its resulting [TypeScript schema](./spec/example/test/files/schema.ts).
 
@@ -132,6 +133,7 @@ See `Anchor::TypeScript::Resource`, `Anchor::TypeScript::Serializer`, and
 | ------------------------------------------ | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `field_case`                               | `:camel \| :snake \| :kebab` | Case format for `attributes` and `relationships` properties.                                                                                       |
 | `ar_column_to_type`                        | `Proc`                       | `ActiveRecord::Base.columns_hash[attribute]` to `Anchor::Type`                                                                                     |
+| `use_active_record_comment`                | `Boolean`                    | whether to use ActiveRecord comments as default value of `description` option                                                                      |
 | `use_active_record_presence`               | `Boolean`                    | check presence of unconditional `validates :attribute, presence: true` to infer database nullable attribute as non-null                            |
 | `infer_nullable_relationships_as_optional` | `Boolean`                    | `true` infers nullable relationships as optional. e.g. in TypeScript, `true` infers `{ relation?: Relation }` over `{ relation: Maybe<Relation> }` |
 

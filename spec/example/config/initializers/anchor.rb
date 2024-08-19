@@ -1,6 +1,7 @@
 module Anchor
   configure do |c|
     c.field_case = :camel
+    c.use_active_record_comment = true
     c.use_active_record_presence = true
     c.infer_nullable_relationships_as_optional = true
 
