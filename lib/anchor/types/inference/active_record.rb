@@ -7,9 +7,9 @@ module Anchor::Types::Inference
       def wrapper_from_reflection(reflection)
         case reflection
         when ::ActiveRecord::Reflection::BelongsToReflection then ->(type) { belongs_to_type(reflection, type) }
-        when ::ActiveRecord::Reflection::HasOneReflection then ->(type) { Types::Maybe.new(type) }
-        when ::ActiveRecord::Reflection::HasManyReflection then ->(type) { Types::Array.new(type) }
-        when ::ActiveRecord::Reflection::HasAndBelongsToManyReflection then ->(type) { Types::Array.new(type) }
+        when ::ActiveRecord::Reflection::HasOneReflection then ->(type) { Anchor::Types::Maybe.new(type) }
+        when ::ActiveRecord::Reflection::HasManyReflection then ->(type) { Anchor::Types::Array.new(type) }
+        when ::ActiveRecord::Reflection::HasAndBelongsToManyReflection then ->(type) { Anchor::Types::Array.new(type) }
         when ::ActiveRecord::Reflection::ThroughReflection then wrapper_from_reflection(reflection.send(:delegate_reflection))
         else raise "#{reflection.class.name} not supported"
         end
@@ -22,7 +22,7 @@ module Anchor::Types::Inference
       # @param type [Anchor::Types]
       # @return [Anchor::Types::Maybe<Type>, Type]
       def belongs_to_type(reflection, type)
-        reflection.options[:optional] ? Types::Maybe.new(type) : type
+        reflection.options[:optional] ? Anchor::Types::Maybe.new(type) : type
       end
     end
 
@@ -33,10 +33,10 @@ module Anchor::Types::Inference
           type = from_sql_type(column.type)
 
           if column.sql_type_metadata.sql_type == "character varying[]"
-            type = Types::Array.new(Types::String)
+            type = Anchor::Types::Array.new(Anchor::Types::String)
           end
 
-          column.null ? Types::Maybe.new(type) : type
+          column.null ? Anchor::Types::Maybe.new(type) : type
         end
 
         def default_ar_column_to_type(column)
@@ -48,19 +48,19 @@ module Anchor::Types::Inference
         # inspiration from https://github.com/ElMassimo/types_from_serializers/blob/146ba40bc1a0da37473cd3b705a8ca982c2d173f/types_from_serializers/lib/types_from_serializers/generator.rb#L382
         def from_sql_type(type)
           case type
-          when :boolean then Types::Boolean
-          when :date then Types::String
-          when :datetime then Types::String
-          when :decimal then Types::BigDecimal
-          when :float then Types::Float
-          when :integer then Types::Integer
-          when :json then Types::Record
-          when :jsonb then Types::Record
-          when :string then Types::String
-          when :text then Types::String
-          when :time then Types::String
-          when :uuid then Types::String
-          else Types::Unknown
+          when :boolean then Anchor::Types::Boolean
+          when :date then Anchor::Types::String
+          when :datetime then Anchor::Types::String
+          when :decimal then Anchor::Types::BigDecimal
+          when :float then Anchor::Types::Float
+          when :integer then Anchor::Types::Integer
+          when :json then Anchor::Types::Record
+          when :jsonb then Anchor::Types::Record
+          when :string then Anchor::Types::String
+          when :text then Anchor::Types::String
+          when :time then Anchor::Types::String
+          when :uuid then Anchor::Types::String
+          else Anchor::Types::Unknown
           end
         end
       end
