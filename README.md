@@ -403,3 +403,7 @@ export enum UserRole {
 - [@nopelluhh](https://github.com/nopelluhh)
 - [ElMassimo/types_from_serializers](https://github.com/ElMassimo/types_from_serializers)
 - [rmosolgo/graphql-ruby](https://github.com/rmosolgo/graphql-ruby)
+
+#### Security
+
+[Security Policy](/SECURITY.md)
