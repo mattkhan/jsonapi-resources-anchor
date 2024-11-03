@@ -19,6 +19,7 @@ RSpec.describe "Example" do
   snapshot_test "schema.ts", -> { Schema.generate(include_all_fields: true) }
   snapshot_test "test_schema.ts", -> { Schema.generate(context: { role: "test" }) }
   snapshot_test "all_fields_false_schema.ts", -> { Schema.generate }
+  snapshot_test "excluded_fields_schema.ts", -> { Schema.generate(exclude_fields: { User: [:name, :posts] }) }
   snapshot_test "json_schema.json", -> { Schema.generate(adapter: :json_schema, include_all_fields: true) }
 end
 # rubocop:enable RSpec/EmptyExampleGroup

@@ -34,6 +34,7 @@ module Anchor::JSONSchema
           resource.anchor_schema_name => type_property(resource.express(
             context: @context,
             include_all_fields: @include_all_fields,
+            exclude_fields: @exclude_fields.nil? ? [] : @exclude_fields[r.anchor_schema_name.to_sym],
           )),
         }
       end.reduce(&:merge)
