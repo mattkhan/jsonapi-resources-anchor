@@ -12,7 +12,11 @@ module Anchor
     Array = Struct.new(:type)
     Literal = Struct.new(:value)
     Union = Struct.new(:types)
-    Reference = Struct.new(:name)
+    Reference = Struct.new(:name) do
+      def anchor_schema_name
+        name
+      end
+    end
     Property = Struct.new(:name, :type, :optional, :description)
     class Object
       attr_reader :properties

@@ -1,6 +1,19 @@
 module Anchor::TypeScript
   class Resource < Anchor::Resource
-    def express(context: {}, include_all_fields:, exclude_fields:)
+    Definition = Struct.new(:name, :object, keyword_init: true)
+
+    def express(...)
+      @object = object(...)
+      expression = Anchor::TypeScript::Serializer.type_string(@object)
+      "export type #{anchor_schema_name} = " + expression + ";"
+    end
+
+    def definition(...)
+      @object = object(...)
+      Definition.new(name: anchor_schema_name, object: @object)
+    end
+
+    def object(context: {}, include_all_fields:, exclude_fields:)
       included_fields = schema_fetchable_fields(context:, include_all_fields:)
       included_fields -= exclude_fields if exclude_fields
 
@@ -14,8 +27,7 @@ module Anchor::TypeScript
         Array.wrap(relationships_property) +
         [anchor_meta_property].compact + [anchor_links_property].compact
 
-      expression = Anchor::TypeScript::Serializer.type_string(Anchor::Types::Object.new(properties))
-      "export type #{anchor_schema_name} = " + expression + ";"
+      Anchor::Types::Object.new(properties)
     end
   end
 end

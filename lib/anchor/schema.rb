@@ -3,6 +3,10 @@ module Anchor
     class << self
       Register = Struct.new(:resources, :enums, keyword_init: true)
 
+      def register
+        Register.new(resources: @resources || [], enums: @enums || [])
+      end
+
       def resource(resource)
         @resources ||= []
         @resources.push(resource)
@@ -21,7 +25,7 @@ module Anchor
         end
 
         adapter.call(
-          register: Register.new(resources: @resources || [], enums: @enums || []),
+          register:,
           context:,
           include_all_fields:,
           exclude_fields:,

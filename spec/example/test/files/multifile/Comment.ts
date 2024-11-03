@@ -1,0 +1,24 @@
+// START AUTOGEN
+
+import { Post } from "./Post";
+import { User } from "./User";
+
+type Model = {
+  id: number;
+  type: "comments";
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+  relationships: {
+    /** Author of the comment. */
+    user: User;
+    deletedBy?: User;
+    commentable?: User | Post;
+  };
+};
+
+// END AUTOGEN
+
+type Comment = Model;
+
+export { type Comment };
