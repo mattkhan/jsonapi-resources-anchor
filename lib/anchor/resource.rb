@@ -78,6 +78,9 @@ module Anchor
                  if v.is_a?(ActiveRecord::Validations::UniquenessValidator)
                    opts = v.options.with_indifferent_access
                    !(opts[:allow_nil] || opts[:allow_blank])
+                 elsif v.is_a?(ActiveRecord::Validations::NumericalityValidator)
+                   opts = v.options.with_indifferent_access
+                   !opts[:allow_nil]
                  else
                    v.is_a?(ActiveRecord::Validations::PresenceValidator)
                  end
