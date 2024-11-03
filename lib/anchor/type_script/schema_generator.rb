@@ -4,7 +4,13 @@ module Anchor::TypeScript
       maybe_type = "type Maybe<T> = T | null;"
 
       enum_expressions = enums.map(&:express)
-      type_expressions = resources.map { |r| r.express(context: @context, include_all_fields: @include_all_fields) }
+      type_expressions = resources.map do |r|
+        r.express(
+          context: @context,
+          include_all_fields: @include_all_fields,
+          exclude_fields: @exclude_fields.nil? ? [] : @exclude_fields[r.anchor_schema_name.to_sym],
+        )
+      end
 
       ([maybe_type] + enum_expressions + type_expressions).join("\n\n") + "\n"
     end
