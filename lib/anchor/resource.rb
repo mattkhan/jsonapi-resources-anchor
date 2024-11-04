@@ -67,7 +67,8 @@ module Anchor
 
           model_method_defined = _model_class.try(:method_defined?, model_method.to_sym)
           resource_method_defined = @anchor_method_added_count[resource_method.to_sym] > 1
-          method_defined = model_method_defined || resource_method_defined
+          serializer_defined = (_model_class.try(:attribute_types) || {})[model_method.to_s].respond_to?(:coder)
+          method_defined = model_method_defined || resource_method_defined || serializer_defined
 
           column = !method_defined && _model_class.try(:columns_hash).try(:[], model_method.to_s)
           if column
