@@ -13,6 +13,7 @@ module Anchor
       @anchor_attributes_descriptions = resource_klass.try(:anchor_attributes_descriptions) || {}
       @anchor_relationships_descriptions = resource_klass.try(:anchor_relationships_descriptions) || {}
       @anchor_method_added_count = resource_klass.anchor_method_added_count || Hash.new(0)
+      @anchor_links_schema = resource_klass.try(:anchor_links_schema) || nil
     end
 
     def express(...)
@@ -105,6 +106,12 @@ module Anchor
       anchor_relationships_properties(included_fields:).then do |properties|
         break if properties.blank?
         Anchor::Types::Property.new(:relationships, Anchor::Types::Object.new(properties))
+      end
+    end
+
+    def anchor_links_property
+      if @anchor_links_schema
+        Anchor::Types::Property.new("links", @anchor_links_schema, false)
       end
     end
 

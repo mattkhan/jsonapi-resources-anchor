@@ -4,5 +4,6 @@ module Anchor
     include Anchor::TypeInferable
     include Anchor::StaticContext
     include Anchor::Annotatable
+    include Anchor::CustomLinkable
   end
 end
