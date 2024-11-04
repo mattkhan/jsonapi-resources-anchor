@@ -43,6 +43,13 @@ class ExhaustiveResource < ApplicationResource
   attribute :resource_overridden
   attribute :with_comment
 
+  class LinkSchema < Anchor::Types::Object
+    property :self, Anchor::Types::String
+    property :some_url, Anchor::Types::String
+  end
+
+  anchor_links_schema LinkSchema
+
   def asserted_string = "asserted_string"
 
   def asserted_number = 1
