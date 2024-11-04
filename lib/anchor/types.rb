@@ -55,11 +55,21 @@ module Anchor
       end
     end
 
+    def self.camelize_without_inflection(val)
+      vals = val.split("_")
+      if vals.length == 1
+        vals[0]
+      else
+        ([vals[0]] + vals[1..].map(&:capitalize)).join("")
+      end
+    end
+
     # @param value [String, Symbol]
     # @return [String]
     def self.convert_case(value)
       case Anchor.config.field_case
       when :camel then value.to_s.underscore.camelize(:lower)
+      when :camel_without_inflection then camelize_without_inflection(value.to_s.underscore)
       when :kebab then value.to_s.underscore.dasherize
       when :snake then value.to_s.underscore
       else value
