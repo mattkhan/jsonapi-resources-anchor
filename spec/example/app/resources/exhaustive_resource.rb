@@ -47,8 +47,13 @@ class ExhaustiveResource < ApplicationResource
     property :self, Anchor::Types::String
     property :some_url, Anchor::Types::String
   end
-
   anchor_links_schema LinkSchema
+
+  class MetaSchema < Anchor::Types::Object
+    property :some_count, Anchor::Types::Integer
+    property :extra_stuff, Anchor::Types::String
+  end
+  anchor_meta_schema MetaSchema
 
   def asserted_string = "asserted_string"
 

@@ -14,6 +14,7 @@ module Anchor
       @anchor_relationships_descriptions = resource_klass.try(:anchor_relationships_descriptions) || {}
       @anchor_method_added_count = resource_klass.anchor_method_added_count || Hash.new(0)
       @anchor_links_schema = resource_klass.try(:anchor_links_schema) || nil
+      @anchor_meta_schema = resource_klass.try(:anchor_meta_schema) || nil
     end
 
     def express(...)
@@ -112,6 +113,12 @@ module Anchor
     def anchor_links_property
       if @anchor_links_schema
         Anchor::Types::Property.new("links", @anchor_links_schema, false)
+      end
+    end
+
+    def anchor_meta_property
+      if @anchor_meta_schema
+        Anchor::Types::Property.new("meta", @anchor_meta_schema, false)
       end
     end
 

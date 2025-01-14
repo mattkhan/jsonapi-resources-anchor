@@ -95,6 +95,10 @@ export type Exhaustive = {
   resourceOverridden: unknown;
   /** This is a comment. */
   withComment: Maybe<string>;
+  meta: {
+    some_count: number;
+    extra_stuff: string;
+  };
   links: {
     self: string;
     some_url: string;

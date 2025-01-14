@@ -5,5 +5,6 @@ module Anchor
     include Anchor::StaticContext
     include Anchor::Annotatable
     include Anchor::CustomLinkable
+    include Anchor::CustomMeta
   end
 end
