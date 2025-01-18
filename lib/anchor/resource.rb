@@ -80,12 +80,13 @@ module Anchor
             if check_presence && _model_class.validators_on(model_method).any? do |v|
                  if v.is_a?(ActiveRecord::Validations::UniquenessValidator)
                    opts = v.options.with_indifferent_access
-                   !(opts[:allow_nil] || opts[:allow_blank])
+                   !(opts[:allow_nil] || opts[:allow_blank] || opts[:if] || opts[:unless] || opts[:on])
                  elsif v.is_a?(ActiveRecord::Validations::NumericalityValidator)
                    opts = v.options.with_indifferent_access
-                   !opts[:allow_nil]
-                 else
-                   v.is_a?(ActiveRecord::Validations::PresenceValidator)
+                   !(opts[:allow_nil] || opts[:if] || opts[:unless] || opts[:on])
+                 elsif v.is_a?(ActiveRecord::Validations::PresenceValidator)
+                   opts = v.options.with_indifferent_access
+                   !(opts[:if] || opts[:unless] || opts[:on])
                  end
                end
               type.type
