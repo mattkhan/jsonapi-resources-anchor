@@ -32,7 +32,7 @@ module Anchor::Types::Inference
           return Anchor.config.ar_column_to_type.call(column) if check_config && Anchor.config.ar_column_to_type
           type = from_sql_type(column.type)
 
-          if column.sql_type_metadata.sql_type == "character varying[]"
+          if ["character varying[]", "text[]"].include?(column.sql_type_metadata.sql_type)
             type = Anchor::Types::Array.new(Anchor::Types::String)
           end
 
