@@ -161,7 +161,8 @@ module Anchor
     # @return [Anchor::Types::Reference, Anchor::Types::Array<Anchor::Types::Reference>, Anchor::Types::Maybe<Anchor::Types::Reference>]
     def relationship_type_for(rel, resource_klass, name)
       ref = Anchor::Types::Reference.new(resource_klass.anchor_schema_name)
-      reflection = _model_class.try(:reflections).try(:[], name.to_s)
+      model_relationship_name = (rel.options[:relation_name] || name).to_s
+      reflection = _model_class.try(:reflections).try(:[], model_relationship_name)
       wrapper = if reflection
         Anchor::Types::Inference::ActiveRecord.wrapper_from_reflection(reflection)
       else
