@@ -9,6 +9,8 @@ module Anchor
       return Types::Literal.new("never") if column.name == "loljk"
       Types::Inference::ActiveRecord::SQL.default_ar_column_to_type(column)
     }
+
+    c.empty_relationship_type = -> { Anchor::Types::Object }
   end
 end
 

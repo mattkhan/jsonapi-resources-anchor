@@ -35,6 +35,7 @@ module Anchor::TypeScript
       end
 
       def serialize_object(type, depth)
+        return "{}" if type.properties.empty?
         properties = type.properties.flat_map do |p|
           [
             p.description && "/** #{p.description} */",

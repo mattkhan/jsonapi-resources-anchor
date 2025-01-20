@@ -4,7 +4,8 @@ module Anchor
       :field_case,
       :use_active_record_presence,
       :use_active_record_comment,
-      :infer_nullable_relationships_as_optional
+      :infer_nullable_relationships_as_optional,
+      :empty_relationship_type
 
     def initialize
       @ar_column_to_type = nil
@@ -12,6 +13,7 @@ module Anchor
       @use_active_record_presence = nil
       @use_active_record_comment = nil
       @infer_nullable_relationships_as_optional = nil
+      @empty_relationship_type = nil
     end
   end
 end

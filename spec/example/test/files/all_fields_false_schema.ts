@@ -12,6 +12,7 @@ export type Comment = {
   id: number;
   type: "comments";
   createdAt: string;
+  relationships: {};
 };
 
 export type User = {
@@ -87,6 +88,7 @@ export type Exhaustive = {
   resourceOverridden: unknown;
   /** This is a comment. */
   withComment: Maybe<string>;
+  relationships: {};
   meta: {
     some_count: number;
     extra_stuff: string;

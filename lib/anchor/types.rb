@@ -18,11 +18,13 @@ module Anchor
       attr_reader :properties
 
       def initialize(properties)
-        @properties = properties
+        @properties = properties || []
       end
 
       class << self
-        attr_reader :properties
+        def properties
+          @properties ||= []
+        end
 
         def property(name, type, optional: nil, description: nil)
           @properties ||= []
