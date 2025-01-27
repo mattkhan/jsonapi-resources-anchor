@@ -1,6 +1,6 @@
 // START AUTOGEN
 
-import { Maybe } from "./shared";
+import type { Maybe } from "./shared";
 
 type Model = {
   id: number;

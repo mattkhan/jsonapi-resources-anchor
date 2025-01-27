@@ -1,7 +1,7 @@
 // START AUTOGEN
 
-import { Comment } from "./Comment";
-import { User } from "./User";
+import type { Comment } from "./Comment";
+import type { User } from "./User";
 
 type Model = {
   id: number;

@@ -1,8 +1,8 @@
 // START AUTOGEN
 
-import { UserRole } from "./shared";
-import { Comment } from "./Comment";
-import { Post } from "./Post";
+import type { UserRole } from "./shared";
+import type { Comment } from "./Comment";
+import type { Post } from "./Post";
 
 type Model = {
   id: number;

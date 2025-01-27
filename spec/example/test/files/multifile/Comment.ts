@@ -1,7 +1,7 @@
 // START AUTOGEN
 
-import { Post } from "./Post";
-import { User } from "./User";
+import type { Post } from "./Post";
+import type { User } from "./User";
 
 type Model = {
   id: number;

@@ -10,7 +10,7 @@ module Anchor::TypeScript
             import.type.try(:anchor_schema_name) || import.type.name
           end.join(",")
 
-          "import { #{named_imports} } from \"./#{file_name[..-4]}\";"
+          "import type { #{named_imports} } from \"./#{file_name[..-4]}\";"
         end.join("\n") + "\n"
       end
 
