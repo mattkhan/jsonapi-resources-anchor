@@ -27,9 +27,12 @@ module Anchor::TypeScript
   end
 
   class MultifileSchemaGenerator < Anchor::SchemaGenerator
-    def initialize(**opts)
-      super(**opts.except(:manually_editable))
-      @manually_editable = opts[:manually_editable] || false
+    def initialize(register:, context: {}, include_all_fields: false, exclude_fields: nil, manually_editable: true) # rubocop:disable Lint/MissingSuper
+      @register = register
+      @context = context
+      @include_all_fields = include_all_fields
+      @exclude_fields = exclude_fields
+      @manually_editable = manually_editable
     end
 
     def call
