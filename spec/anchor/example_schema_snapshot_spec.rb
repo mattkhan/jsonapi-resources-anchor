@@ -4,6 +4,8 @@ require "rails_helper"
 RSpec.describe "Example" do
   def self.snapshot_test(filename, generate)
     it "generates correct #{filename} schema" do
+      User.find_or_create_by!(name: "User", role: :admin) # allows ActiveRecord to define instance methods for columns
+
       schema = generate.call
       path = Rails.root.join("test/files", filename)
       unless File.file?(path)

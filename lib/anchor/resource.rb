@@ -67,7 +67,11 @@ module Anchor
           model_method = options[:delegate] || attr
           resource_method = attr
 
-          model_method_defined = _model_class.try(:method_defined?, model_method.to_sym)
+          model_method_defined = _model_class.try(
+            :method_defined?,
+            model_method.to_sym,
+          ) && !_model_class.instance_method(model_method.to_sym)
+            .owner.is_a?(ActiveRecord::AttributeMethods::GeneratedAttributeMethods)
           resource_method_defined = @anchor_method_added_count[resource_method.to_sym] > 1
           serializer_defined = (_model_class.try(:attribute_types) || {})[model_method.to_s].respond_to?(:coder)
           method_defined = model_method_defined || resource_method_defined || serializer_defined
