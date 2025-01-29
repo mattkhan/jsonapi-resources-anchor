@@ -147,9 +147,9 @@ class ApplicationResource
 end
 
 class SomeScope::UserResource < ApplicaionResource
-  # optional schema_name definition
+  # optional anchor_schema_name definition
   # defaults to part of the string after the last :: (or class name itself if not nested) and removes Resource, in this case User
-  schema_name "SpecialUser"
+  anchor_schema_name "SpecialUser"
 
   attribute :name
   attribute :role, Anchor::Types::String
@@ -228,7 +228,7 @@ end
 
 ```rb
 class UserRoleEnum < Anchor::Types::Enum
-  schema_name "UserRole" # optional, similar logic to Resource but removes Enum
+  anchor_schema_name "UserRole" # optional, similar logic to Resource but removes Enum
 
   # First argument is the enum member identifier that gets camelized
   # Second argument is the value
@@ -323,7 +323,7 @@ class UserResource < ApplicationResource
 end
 
 class UserRoleEnum < Anchor::Types::Enum
-  schema_name "UserRole"
+  anchor_schema_name "UserRole"
 
   value :admin, "admin"
   value :content_creator, "content_creator"
