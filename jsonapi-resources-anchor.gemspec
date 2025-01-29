@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
   s.add_dependency("rails", ">= 7.0")
   s.add_development_dependency("rspec-rails", "~> 7.0")
   s.add_development_dependency("yard")
+  s.add_development_dependency("yard-activesupport-concern")
 end

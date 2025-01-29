@@ -260,6 +260,8 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yard (0.9.37)
+    yard-activesupport-concern (0.0.1)
+      yard (>= 0.8)
     zeitwerk (2.6.18)
 
 PLATFORMS
@@ -286,6 +288,7 @@ DEPENDENCIES
   sprockets-rails
   tzinfo-data
   yard
+  yard-activesupport-concern
 
 RUBY VERSION
    ruby 3.3.2p78
