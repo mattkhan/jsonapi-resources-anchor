@@ -43,12 +43,42 @@ RSpec.describe Anchor::TypeInferable do
       end
 
       context "without schema name" do
+        around { |example| stub_jsonapi_resource_subclass("TestResources", &example) }
+
         it "uses the default schema name" do
           UserResource.class_eval do
             include Anchor::TypeInferable
           end
 
           expect(anchor_schema_name).to eql("User")
+        end
+
+        context "without use_type_as_schema_name config enabled" do
+          before do
+            allow(Anchor.config).to receive(:use_type_as_schema_name).and_return(false)
+          end
+
+          it "uses the default schema name" do
+            TestResources.class_eval do
+              include Anchor::TypeInferable
+            end
+
+            expect(TestResources.anchor_schema_name).to eql("TestResources")
+          end
+        end
+
+        context "with use_type_as_schema_name config enabled" do
+          before do
+            allow(Anchor.config).to receive(:use_type_as_schema_name).and_return(true)
+          end
+
+          it "uses classified _type" do
+            TestResources.class_eval do
+              include Anchor::TypeInferable
+            end
+
+            expect(TestResources.anchor_schema_name).to eql("TestResource")
+          end
         end
       end
     end

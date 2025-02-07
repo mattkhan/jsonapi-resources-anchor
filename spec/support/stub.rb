@@ -1,9 +1,11 @@
 # rubocop:disable RSpec/RemoveConst, Security/Eval
 def stub_jsonapi_resource_subclass(name, &example)
   previously_defined = Object.const_defined?(name)
-  previous_klass = name.constantize
 
-  Object.send(:remove_const, name) if previously_defined
+  if previously_defined
+    previous_klass = name.constantize
+    Object.send(:remove_const, name)
+  end
 
   klass_string = <<~EVAL
     class #{name} < JSONAPI::Resource
