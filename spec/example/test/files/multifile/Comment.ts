@@ -13,7 +13,7 @@ type Model = {
     /** Author of the comment. */
     user: User;
     deletedBy?: User;
-    commentable?: User | Post;
+    commentable?: Post;
   };
 };
 

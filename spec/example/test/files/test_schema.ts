@@ -15,7 +15,7 @@ export type Comment = {
   updatedAt: string;
   relationships: {
     deletedBy?: User;
-    commentable?: User | Post;
+    commentable?: Post;
   };
 };
 

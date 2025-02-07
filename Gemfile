@@ -4,7 +4,11 @@ ruby "3.3.2"
 
 gemspec
 
-gem "jsonapi-resources", "~> 0.1"
+gem "jsonapi-resources",
+  "0.11.0.beta2",
+  git: "https://github.com/cerebris/jsonapi-resources",
+  branch: "v0-11-dev",
+  ref: "d3c094b"
 
 # # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

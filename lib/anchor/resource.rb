@@ -164,7 +164,15 @@ module Anchor
     # @param name [String, Symbol]
     # @return [Anchor::Types::Reference, Anchor::Types::Array<Anchor::Types::Reference>, Anchor::Types::Maybe<Anchor::Types::Reference>]
     def relationship_type_for(rel, resource_klass, name)
-      ref = Anchor::Types::Reference.new(resource_klass.anchor_schema_name)
+      rel_type = if rel.polymorphic? && rel.respond_to?(:polymorphic_types) # 0.11.0.beta2
+        resource_klasses = rel.polymorphic_types.map { |t| resource_klass_for(t) }
+        Anchor::Types::Union.new(resource_klasses.map { |rk| Anchor::Types::Reference.new(rk.anchor_schema_name) })
+      elsif rel.polymorphic? && rel.class.respond_to?(:polymorphic_types) # TODO: < 0.11.0.beta2
+        resource_klasses = rel.class.polymorphic_types.map { |t| resource_klass_for(t) }
+        Anchor::Types::Union.new(resource_klasses.map { |rk| Anchor::Types::Reference.new(rk.anchor_schema_name) })
+      end
+
+      rel_type ||= Anchor::Types::Reference.new(resource_klass.anchor_schema_name)
       model_relationship_name = (rel.options[:relation_name] || name).to_s
       reflection = _model_class.try(:reflections).try(:[], model_relationship_name)
       wrapper = if reflection
@@ -173,7 +181,7 @@ module Anchor
         Anchor::Types::Inference::JSONAPI.wrapper_from_relationship(rel)
       end
 
-      wrapper.call(ref)
+      wrapper.call(rel_type)
     end
   end
   # rubocop:enable Layout/LineLength

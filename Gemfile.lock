@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/cerebris/jsonapi-resources
+  revision: d3c094b46a38650e583f40adc86474827b606fc7
+  ref: d3c094b
+  branch: v0-11-dev
+  specs:
+    jsonapi-resources (0.11.0.beta2)
+      activerecord (>= 5.1)
+      concurrent-ruby
+      railties (>= 5.1)
+      sorted_set
+
 PATH
   remote: .
   specs:
@@ -103,10 +115,6 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.9.1)
-    jsonapi-resources (0.10.7)
-      activerecord (>= 4.1)
-      concurrent-ruby
-      railties (>= 4.1)
     language_server-protocol (3.17.0.3)
     logger (1.6.5)
     loofah (2.24.0)
@@ -194,6 +202,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
+    rbtree (0.4.6)
     rdoc (6.10.0)
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
@@ -242,6 +251,10 @@ GEM
       rubocop (~> 1.51)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    set (1.1.1)
+    sorted_set (1.0.3)
+      rbtree
+      set (~> 1.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -274,7 +287,7 @@ PLATFORMS
 
 DEPENDENCIES
   debug
-  jsonapi-resources (~> 0.1)
+  jsonapi-resources (= 0.11.0.beta2)!
   jsonapi-resources-anchor!
   pg (~> 1.5)
   puma (>= 5.0)
