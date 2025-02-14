@@ -162,7 +162,7 @@ module Anchor
     # @param rel [Relationship]
     # @param resource_klass [Anchor::Resource]
     # @param name [String, Symbol]
-    # @return [Anchor::Types::Reference, Anchor::Types::Array<Anchor::Types::Reference>, Anchor::Types::Maybe<Anchor::Types::Reference>]
+    # @return [Anchor::Types::Reference, Anchor::Types::Array<Anchor::Types::Reference>, Anchor::Types::Maybe<Anchor::Types::Reference>, Anchor::Types::Union<Anchor::Types::Reference>]
     def relationship_type_for(rel, resource_klass, name)
       rel_type = if rel.polymorphic? && rel.respond_to?(:polymorphic_types) # 0.11.0.beta2
         resource_klasses = rel.polymorphic_types.map { |t| resource_klass_for(t) }

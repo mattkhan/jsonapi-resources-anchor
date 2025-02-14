@@ -2,6 +2,13 @@ module Anchor::JSONSchema
   class SchemaGenerator < Anchor::SchemaGenerator
     delegate :type_property, to: Anchor::JSONSchema::Serializer
 
+    def initialize(register:, context: {}, include_all_fields: false, exclude_fields: nil) # rubocop:disable Lint/MissingSuper
+      @register = register
+      @context = context
+      @include_all_fields = include_all_fields
+      @exclude_fields = exclude_fields
+    end
+
     def call
       result = {
         "$schema" => "https://json-schema.org/draft-07/schema",

@@ -11,7 +11,7 @@ module Anchor
     def initialize
       @ar_column_to_type = nil
       @field_case = nil
-      @use_active_record_presence = nil
+      @use_active_record_presence = true
       @use_active_record_comment = nil
       @infer_nullable_relationships_as_optional = nil
       @empty_relationship_type = nil

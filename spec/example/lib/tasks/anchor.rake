@@ -33,11 +33,15 @@ namespace :anchor do
       puts "✅ #{folder}"
     end
 
-    write_to "schema.ts", -> { Schema.generate(include_all_fields: true) }
-    write_to "test_schema.ts", -> { Schema.generate(context: { role: "test" }) }
-    write_to "all_fields_false_schema.ts", -> { Schema.generate }
+    write_to "schema.ts", -> {
+      Anchor::TypeScript::SchemaGenerator.call(register: Schema.register, include_all_fields: true)
+    }
+    write_to "test_schema.ts", -> {
+      Anchor::TypeScript::SchemaGenerator.call(register: Schema.register, context: { role: "test" })
+    }
+    write_to "all_fields_false_schema.ts", -> { Anchor::TypeScript::SchemaGenerator.call(register: Schema.register) }
     write_to "excluded_fields_schema.ts", -> {
-      Schema.generate(exclude_fields: { User: [:name, :posts] })
+      Anchor::TypeScript::SchemaGenerator.call(register: Schema.register, exclude_fields: { User: [:name, :posts] })
     }
     write_to_multi "multifile", false, -> {
       Anchor::TypeScript::MultifileSchemaGenerator.call(
@@ -48,6 +52,8 @@ namespace :anchor do
         manually_editable: true,
       )
     }
-    write_to "json_schema.json", -> { Schema.generate(adapter: :json_schema, include_all_fields: true) }
+    write_to "json_schema.json", -> {
+      Anchor::JSONSchema::SchemaGenerator.call(register: Schema.register, include_all_fields: true)
+    }
   end
 end
