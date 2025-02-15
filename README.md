@@ -24,6 +24,16 @@ Ideally, API schemas have the types of each payload fully specified.
 See the [example](./spec/example) Rails app for a fully functional app using
 `Anchor`.
 
+## Installation
+
+```ruby
+gem 'jsonapi-resources-anchor'
+```
+
+```sh
+bundle install
+```
+
 ## TypeScript Demo
 
 Given:
