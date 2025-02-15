@@ -11,7 +11,7 @@
     "@semantic-release/changelog",
     [
       "semantic-release-rubygem",
-      { "gemPublish": true, "updateGemfileLock": true }
+      { "gemPublish": true }
     ],
     [
       "@semantic-release/git",
