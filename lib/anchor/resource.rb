@@ -80,7 +80,7 @@ module Anchor
           if column
             type = Anchor::Types::Inference::ActiveRecord::SQL.from(column)
             description ||= column.comment if Anchor.config.use_active_record_comment
-            check_presence = type.is_a?(Anchor::Types::Maybe) && Anchor.config.use_active_record_presence
+            check_presence = type.is_a?(Anchor::Types::Maybe) && Anchor.config.use_active_record_validations
             if check_presence && _model_class.validators_on(model_method).any? do |v|
                  if v.is_a?(ActiveRecord::Validations::NumericalityValidator)
                    opts = v.options.with_indifferent_access
