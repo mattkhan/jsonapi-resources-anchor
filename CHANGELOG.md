@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v1.0.1...v1.0.2) (2025-02-15)
+
+
+### Bug Fixes
+
+* update Gemfile lock on release ([37b2322](https://github.com/mattkhan/jsonapi-resources-anchor/commit/37b23229e55ee9ff4487c89c5b6a8bd9bb502d54))
+
 ## [1.0.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v1.0.0...v1.0.1) (2025-02-15)
 
 
