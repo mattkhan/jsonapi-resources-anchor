@@ -1,0 +1,35 @@
+# 1.0.0 (2025-02-15)
+
+
+### Bug Fixes
+
+* add type to import ([8aa8dc7](https://github.com/mattkhan/jsonapi-resources-anchor/commit/8aa8dc723f5c38286d6701eb4ae76b65ca295a5d))
+* allow ActiveRecord method definitions ([09198d4](https://github.com/mattkhan/jsonapi-resources-anchor/commit/09198d4cd89abc2293927cfbdb7896ef9dc676c1))
+* assert unknown type if serialized ([119be6a](https://github.com/mattkhan/jsonapi-resources-anchor/commit/119be6acb9a2e2ac9f1d6736d7882b9fe7dfb6f2))
+* correctly infer text[] columns ([b88bad7](https://github.com/mattkhan/jsonapi-resources-anchor/commit/b88bad7dd70eb33983f1b0b0f9754d3ae096c0b5))
+* **deps:** bump pg from 1.5.7 to 1.5.8 ([#5](https://github.com/mattkhan/jsonapi-resources-anchor/issues/5)) ([fe1b929](https://github.com/mattkhan/jsonapi-resources-anchor/commit/fe1b92946e651e64c1239aea09cd25cc323efa58))
+* **deps:** bump pg from 1.5.8 to 1.5.9 ([#23](https://github.com/mattkhan/jsonapi-resources-anchor/issues/23)) ([1b1a89c](https://github.com/mattkhan/jsonapi-resources-anchor/commit/1b1a89c47a61ea40a46b5f595b2848b23fd0a11b))
+* **deps:** bump puma from 6.4.2 to 6.4.3 ([#12](https://github.com/mattkhan/jsonapi-resources-anchor/issues/12)) ([6237c55](https://github.com/mattkhan/jsonapi-resources-anchor/commit/6237c5578d00a8272435751595c873a214d8ac2c))
+* **deps:** bump puma from 6.4.3 to 6.5.0 ([#30](https://github.com/mattkhan/jsonapi-resources-anchor/issues/30)) ([777cca9](https://github.com/mattkhan/jsonapi-resources-anchor/commit/777cca9e9fa88162603b5a353d5806bfb26c2f4b))
+* **deps:** bump rails from 7.2.0 to 7.2.1 ([#9](https://github.com/mattkhan/jsonapi-resources-anchor/issues/9)) ([9f036d3](https://github.com/mattkhan/jsonapi-resources-anchor/commit/9f036d3d5bb1ce1a1406728d78647d786024518b))
+* **deps:** bump rails from 7.2.1 to 7.2.2 ([#20](https://github.com/mattkhan/jsonapi-resources-anchor/issues/20)) ([6ec3d51](https://github.com/mattkhan/jsonapi-resources-anchor/commit/6ec3d514e9138a50744064abec4650fc64a7454f))
+* include more checks for presence validations ([661ace4](https://github.com/mattkhan/jsonapi-resources-anchor/commit/661ace49460f3d2bbfa186985d0b64f7c059a2ad))
+* optional params ([ee38ee3](https://github.com/mattkhan/jsonapi-resources-anchor/commit/ee38ee34fa6be5d049558c8eae6d1fdb2854c074))
+* relationship_name overrides name ([fe08cc5](https://github.com/mattkhan/jsonapi-resources-anchor/commit/fe08cc5eaef9b9f84fdf78c5a1625996d586d432))
+* scope ([36003c2](https://github.com/mattkhan/jsonapi-resources-anchor/commit/36003c23bdba344a3e4d0f0b826b17b7ca24a5aa))
+* uniqueness validator _does_ allow nil ([870bd62](https://github.com/mattkhan/jsonapi-resources-anchor/commit/870bd6258b4409ca796d4258f496689ea3811964))
+
+
+### Features
+
+* add custom links property ([b41d3d8](https://github.com/mattkhan/jsonapi-resources-anchor/commit/b41d3d80bcbae4bb347fada4b6e7f44d173f4f8d))
+* camelize without inflection ([93f30ca](https://github.com/mattkhan/jsonapi-resources-anchor/commit/93f30caf2cf5faa0f0dee7d4e11248cb9e527a8c))
+* configurable default description ([2d19382](https://github.com/mattkhan/jsonapi-resources-anchor/commit/2d193826d9af24e246316c28f2f58136ebd27eff))
+* configurable empty relationship type ([8cab1ee](https://github.com/mattkhan/jsonapi-resources-anchor/commit/8cab1ee4ac6207acab9c268d772458909c22517d))
+* configurable exclude fields ([eed9710](https://github.com/mattkhan/jsonapi-resources-anchor/commit/eed97108f237b38272a8ca9940a9dc5dc48184c8))
+* infer polymorphic types ([f49ce4d](https://github.com/mattkhan/jsonapi-resources-anchor/commit/f49ce4dc065654b82fc758be15038e943148f784))
+* meta property ([56c35be](https://github.com/mattkhan/jsonapi-resources-anchor/commit/56c35beced492d7acd949616053ccf13b8078be7))
+* multifile generation ([5452db8](https://github.com/mattkhan/jsonapi-resources-anchor/commit/5452db8913ca4d2dbc42c3cc7186781dabc96db2))
+* numericality validation presence ([3cc6877](https://github.com/mattkhan/jsonapi-resources-anchor/commit/3cc6877d05638adeef03e3630d9a873564cab917))
+* object type singleton syntax ([11b7b09](https://github.com/mattkhan/jsonapi-resources-anchor/commit/11b7b0908796991efb60df5b746b7934677f96c1))
+* uniqueness validation presence ([554acad](https://github.com/mattkhan/jsonapi-resources-anchor/commit/554acad7b3ad6cb4af4e3827287d214cbcee30f2))
