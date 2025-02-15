@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.0.0...v2.1.0) (2025-02-15)
+
+
+### Features
+
+* add github repo to gemspec ([717cdb7](https://github.com/mattkhan/jsonapi-resources-anchor/commit/717cdb76dd9ff57e6c38fbfbd0d6e63fee3a64ba))
+
 # [2.0.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v1.0.2...v2.0.0) (2025-02-15)
 
 ## [1.0.2](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v1.0.1...v1.0.2) (2025-02-15)
