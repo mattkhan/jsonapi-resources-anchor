@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v1.0.0...v1.0.1) (2025-02-15)
+
+
+### Bug Fixes
+
+* run bundle ([d148b1a](https://github.com/mattkhan/jsonapi-resources-anchor/commit/d148b1a57566fc87e6bdc507a10d0040255013d9))
+
 # 1.0.0 (2025-02-15)
 
 
