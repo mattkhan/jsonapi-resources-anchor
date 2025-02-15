@@ -24,14 +24,15 @@ module Anchor::TypeScript
       end
     end
 
-    def initialize(definition)
+    def initialize(definition, extension: ".ts")
       @definition = definition
       @name = definition.name
       @object = definition.object
+      @extension = extension
     end
 
     def name
-      "#{@definition.name}.ts"
+      "#{@definition.name}#{@extension}"
     end
 
     def to_code(manually_editable: false)
@@ -66,7 +67,7 @@ module Anchor::TypeScript
     def relationship_imports
       relationships_to_import
         .reject { |type| type.anchor_schema_name == @name }
-        .map { |type| Import.new(file_name: "#{type.anchor_schema_name}.ts", type:) }
+        .map { |type| Import.new(file_name: "#{type.anchor_schema_name}#{@extension}", type:) }
     end
 
     def relationships_to_import

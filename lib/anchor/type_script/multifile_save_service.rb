@@ -8,11 +8,10 @@ module Anchor::TypeScript
       new(...).call
     end
 
-    def initialize(generator:, folder_path:, force: false, resource_file_extension: ".ts")
+    def initialize(generator:, folder_path:, force: false)
       @generator = generator
       @folder_path = folder_path
       @force = force
-      @resource_file_extension = "." + resource_file_extension.sub(/^\./, "")
     end
 
     def call
@@ -24,13 +23,7 @@ module Anchor::TypeScript
     private
 
     def save_result(result)
-      filename = if result.type == MultifileSchemaGenerator::FileType::RESOURCE
-        resource_file_name(result.name)
-      else
-        result.name
-      end
-
-      path = Rails.root.join(@folder_path, filename)
+      path = Rails.root.join(@folder_path, result.name)
 
       if @force || !File.exist?(path)
         File.open(path, "w") { |f| f.write(result.text) }
@@ -49,10 +42,6 @@ module Anchor::TypeScript
       end
 
       File.open(path, "w") { |f| f.write(new_content) }
-    end
-
-    def resource_file_name(name)
-      File.basename(name, ".ts") + @resource_file_extension
     end
 
     def manually_editable?(text)
