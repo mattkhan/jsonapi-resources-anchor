@@ -1,3 +1,5 @@
+# [2.0.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v1.0.2...v2.0.0) (2025-02-15)
+
 ## [1.0.2](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v1.0.1...v1.0.2) (2025-02-15)
 
 
