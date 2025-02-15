@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
     "changelog_uri" => "https://github.com/mattkhan/jsonapi-resources-anchor/blob/main/CHANGELOG.md",
     "documentation_uri" => "https://anchor-gem.vercel.app/docs",
     "source_code_uri" => "https://github.com/mattkhan/jsonapi-resources-anchor",
+    "github_repo" => "ssh://github.com/mattkhan/jsonapi-resources-anchor",
   }
 
   s.files = Dir.glob("lib/**/*").reject { |f| File.directory?(f) }
