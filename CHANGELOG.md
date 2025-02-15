@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.1.0...v2.1.1) (2025-02-15)
+
+
+### Bug Fixes
+
+* properly handle custom resource file extensions ([34da0d5](https://github.com/mattkhan/jsonapi-resources-anchor/commit/34da0d52770dc1ac7d0259bbe528ae6115155785))
+
 # [2.1.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.0.0...v2.1.0) (2025-02-15)
 
 
