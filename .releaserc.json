@@ -4,7 +4,10 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
-    ["semantic-release-rubygem", { "gemPublish": true }],
+    [
+      "semantic-release-rubygem",
+      { "gemPublish": true, "updateGemfileLock": true }
+    ],
     [
       "@semantic-release/git",
       {

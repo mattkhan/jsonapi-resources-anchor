@@ -13,7 +13,7 @@ GIT
 PATH
   remote: .
   specs:
-    jsonapi-resources-anchor (1.0.0)
+    jsonapi-resources-anchor (1.0.1)
       jsonapi-resources (~> 0.1)
       rails (>= 7.0)
 
