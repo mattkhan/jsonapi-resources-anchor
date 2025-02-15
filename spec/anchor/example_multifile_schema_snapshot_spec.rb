@@ -4,11 +4,13 @@ require "rails_helper"
 RSpec.describe "Example" do
   def self.multifile_snapshot_test(filename, generate)
     it "generates correct #{filename} schema" do
-      result = generate.call
-      result.each do |res|
-        filename = res[:name]
+      results = generate.call
+      results.each do |res|
+        filename = res.name
+
         path = Rails.root.join("test/files/multifile", filename)
-        schema = res[:content]
+        schema = res.text
+
         unless File.file?(path)
           File.open(path, "w") { |file| file.write(schema) }
         end

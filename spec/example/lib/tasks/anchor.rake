@@ -9,27 +9,9 @@ namespace :anchor do
       puts "✅ #{File.basename(path)}"
     end
 
-    def write_to_multi(folder, force, generate)
-      FileUtils.mkdir_p("test/files/#{folder}")
-      result = generate.call
-      result.each do |res|
-        path = Rails.root.join("test/files/#{folder}", res[:name])
-        if force || !File.exist?(path)
-          File.open(path, "w") { |f| f.write(res[:content]) }
-          next
-        end
-
-        existing_content = File.read(path)
-        new_content =
-          if existing_content.starts_with?("// START AUTOGEN\n") && existing_content.include?("// END AUTOGEN\n")
-            after_end = existing_content.split("// END AUTOGEN\n").second
-            [res[:content].split("\n// END AUTOGEN\n").first, "// END AUTOGEN", after_end].join("\n")
-          else
-            res[:content]
-          end
-
-        File.open(path, "w") { |f| f.write(new_content) }
-      end
+    def write_to_multi(folder, force, generator)
+      folder_path = "test/files/#{folder}"
+      Anchor::TypeScript::MultifileSaveService.call(generator:, folder_path:, force:)
       puts "✅ #{folder}"
     end
 
@@ -43,15 +25,16 @@ namespace :anchor do
     write_to "excluded_fields_schema.ts", -> {
       Anchor::TypeScript::SchemaGenerator.call(register: Schema.register, exclude_fields: { User: [:name, :posts] })
     }
-    write_to_multi "multifile", false, -> {
-      Anchor::TypeScript::MultifileSchemaGenerator.call(
+    write_to_multi "multifile",
+      false,
+      Anchor::TypeScript::MultifileSchemaGenerator.new(
         register: Schema.register,
         context: {},
         include_all_fields: true,
         exclude_fields: nil,
         manually_editable: true,
       )
-    }
+
     write_to "json_schema.json", -> {
       Anchor::JSONSchema::SchemaGenerator.call(register: Schema.register, include_all_fields: true)
     }
