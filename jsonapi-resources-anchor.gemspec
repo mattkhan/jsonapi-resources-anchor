@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 3.1"
   s.add_dependency("jsonapi-resources", "~> 0.1")
   s.add_dependency("rails", ">= 7.0")
-  s.add_development_dependency("rspec-rails", "~> 7.0")
+  s.add_development_dependency("rspec-rails", "~> 8.0")
   s.add_development_dependency("yard")
   s.add_development_dependency("yard-activesupport-concern")
 end
