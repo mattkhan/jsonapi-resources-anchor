@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.2.0...v2.3.0) (2025-06-17)
+
+
+### Features
+
+* fix formatting ([de5eab1](https://github.com/mattkhan/jsonapi-resources-anchor/commit/de5eab162e57af1c8c98e2a2279f20bcab68c9ef))
+
 # [2.2.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.1.1...v2.2.0) (2025-06-17)
 
 
