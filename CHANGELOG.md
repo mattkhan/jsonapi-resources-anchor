@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.1.1...v2.2.0) (2025-06-17)
+
+
+### Features
+
+* hash resources to track modifications ([f08f0d7](https://github.com/mattkhan/jsonapi-resources-anchor/commit/f08f0d72ad48fc20e77e2549df18a38b08d09576))
+
 ## [2.1.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.1.0...v2.1.1) (2025-02-15)
 
 
