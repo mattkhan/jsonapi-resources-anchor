@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.3.0...v2.3.1) (2025-06-17)
+
+
+### Bug Fixes
+
+* automate release ([fff0a04](https://github.com/mattkhan/jsonapi-resources-anchor/commit/fff0a0418a27005709214c2db6e826531433ff7d))
+
 # [2.3.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.2.0...v2.3.0) (2025-06-17)
 
 
