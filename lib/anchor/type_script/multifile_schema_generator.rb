@@ -24,7 +24,12 @@ module Anchor::TypeScript
     end
 
     def call
-      [shared_file] + resource_files
+      @call ||= [shared_file] + resource_files
+    end
+
+    # { res.name => hash(res.text) }
+    def sha_hash
+      @sha_hash ||= call.map { |res| [res.name, Digest::SHA256.hexdigest(res.text)] }.to_h
     end
 
     private

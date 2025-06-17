@@ -39,4 +39,17 @@ namespace :anchor do
       Anchor::JSONSchema::SchemaGenerator.call(register: Schema.register, include_all_fields: true)
     }
   end
+
+  task multigen: :environment do
+    folder_path = "test/files/multifile"
+    generator = Anchor::TypeScript::MultifileSchemaGenerator.new(
+      register: Schema.register,
+      context: {},
+      include_all_fields: true,
+      exclude_fields: nil,
+      manually_editable: true,
+    )
+    modified_files = Anchor::TypeScript::MultifileSaveService.call(generator:, folder_path:)
+    puts modified_files.join(" ")
+  end
 end

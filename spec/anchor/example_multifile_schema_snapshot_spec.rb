@@ -2,9 +2,9 @@ require "rails_helper"
 
 # rubocop:disable RSpec/EmptyExampleGroup
 RSpec.describe "Example" do
-  def self.multifile_snapshot_test(filename, generate)
+  def self.multifile_snapshot_test(filename, generator)
     it "generates correct #{filename} schema" do
-      results = generate.call
+      results = generator.call
       results.each do |res|
         filename = res.name
 
@@ -21,14 +21,13 @@ RSpec.describe "Example" do
     end
   end
 
-  multifile_snapshot_test "schema.ts", -> {
-    Anchor::TypeScript::MultifileSchemaGenerator.call(
+  multifile_snapshot_test "schema.ts",
+    Anchor::TypeScript::MultifileSchemaGenerator.new(
       register: Schema.register,
       context: {},
       include_all_fields: true,
       exclude_fields: nil,
       manually_editable: true,
     )
-  }
 end
 # rubocop:enable RSpec/EmptyExampleGroup
