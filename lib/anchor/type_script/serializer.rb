@@ -1,8 +1,6 @@
 module Anchor::TypeScript
   class Serializer
     class << self
-      # rubocop:disable Layout/LineLength
-
       def type_string(type, depth = 1)
         case type
         when Anchor::Types::String.singleton_class then "string"
@@ -23,7 +21,6 @@ module Anchor::TypeScript
         else raise RuntimeError
         end
       end
-      # rubocop:enable Layout/LineLength
 
       private
 

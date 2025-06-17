@@ -1,8 +1,6 @@
 module Anchor::Types::Inference
   module ActiveRecord
     class << self
-      # rubocop:disable Layout/LineLength
-
       # @return [Proc{Type => Type, Anchor::Types::Maybe<Type>, Anchor::Types::Array<Type>}]
       def wrapper_from_reflection(reflection)
         case reflection
@@ -14,7 +12,6 @@ module Anchor::Types::Inference
         else raise "#{reflection.class.name} not supported"
         end
       end
-      # rubocop:enable Layout/LineLength
 
       private
 

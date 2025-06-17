@@ -158,7 +158,6 @@ module Anchor
       end
     end
 
-    # rubocop:disable Layout/LineLength
     # @param rel [Relationship]
     # @param resource_klass [Anchor::Resource]
     # @param name [String, Symbol]
@@ -184,5 +183,4 @@ module Anchor
       wrapper.call(rel_type)
     end
   end
-  # rubocop:enable Layout/LineLength
 end
