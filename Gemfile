@@ -33,5 +33,5 @@ group :development do
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
-  gem "rubocop-shopify", "~> 2.15", ">= 2.15.1", require: false
+  gem "rubocop-shopify", "~> 2.16", ">= 2.16.0", require: false
 end
