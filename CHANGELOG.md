@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.3.1...v2.4.0) (2025-07-12)
+
+
+### Features
+
+* option to disregard hash.json ([f9d2836](https://github.com/mattkhan/jsonapi-resources-anchor/commit/f9d2836c913c27ae20e586f94ca3e9f4c41f00e9))
+
 ## [2.3.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.3.0...v2.3.1) (2025-06-17)
 
 
