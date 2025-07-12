@@ -8,10 +8,11 @@ module Anchor::TypeScript
       new(...).call
     end
 
-    def initialize(generator:, folder_path:, force: false)
+    def initialize(generator:, folder_path:, force: false, trust_hash: true)
       @generator = generator
       @folder_path = folder_path
       @force = force
+      @trust_hash = trust_hash
     end
 
     def call
@@ -47,7 +48,7 @@ module Anchor::TypeScript
         return result.name
       end
 
-      return if sha_hash[result.name] == Digest::SHA256.hexdigest(result.text)
+      return if @trust_hash && sha_hash[result.name] == Digest::SHA256.hexdigest(result.text)
 
       existing_content = File.read(path)
 
