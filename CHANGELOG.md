@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.4.0...v2.5.0) (2025-07-15)
+
+
+### Features
+
+* maybe as union config ([df27ebe](https://github.com/mattkhan/jsonapi-resources-anchor/commit/df27ebef66c52974ef0a7fd9a24d3a47a1a4d30f))
+
 # [2.4.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.3.1...v2.4.0) (2025-07-12)
 
 
