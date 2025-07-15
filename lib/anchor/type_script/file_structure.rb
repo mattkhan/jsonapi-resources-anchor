@@ -85,6 +85,7 @@ module Anchor::TypeScript
     end
 
     def utils_to_import
+      return [] if Anchor.config.maybe_as_union
       maybe_type = has_maybe?(@object).presence && Anchor::Types::Reference.new("Maybe")
       [maybe_type].compact
     end

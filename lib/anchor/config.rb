@@ -6,7 +6,8 @@ module Anchor
       :use_active_record_comment,
       :infer_nullable_relationships_as_optional,
       :empty_relationship_type,
-      :use_type_as_schema_name
+      :use_type_as_schema_name,
+      :maybe_as_union
 
     def initialize
       @ar_column_to_type = nil
@@ -16,6 +17,7 @@ module Anchor
       @infer_nullable_relationships_as_optional = nil
       @empty_relationship_type = nil
       @use_type_as_schema_name = nil
+      @maybe_as_union = nil
     end
   end
 end

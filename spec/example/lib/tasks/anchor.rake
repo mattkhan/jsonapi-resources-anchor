@@ -49,7 +49,7 @@ namespace :anchor do
       exclude_fields: nil,
       manually_editable: true,
     )
-    modified_files = Anchor::TypeScript::MultifileSaveService.call(generator:, folder_path:)
+    modified_files = Anchor::TypeScript::MultifileSaveService.call(generator:, folder_path:, force: true)
     puts modified_files.join(" ")
   end
 end
