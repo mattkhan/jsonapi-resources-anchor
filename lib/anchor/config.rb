@@ -7,7 +7,8 @@ module Anchor
       :infer_nullable_relationships_as_optional,
       :empty_relationship_type,
       :use_type_as_schema_name,
-      :maybe_as_union
+      :maybe_as_union,
+      :array_bracket_notation
 
     def initialize
       @ar_column_to_type = nil
@@ -18,6 +19,7 @@ module Anchor
       @empty_relationship_type = nil
       @use_type_as_schema_name = nil
       @maybe_as_union = nil
+      @array_bracket_notation = nil
     end
   end
 end
