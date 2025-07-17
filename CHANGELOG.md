@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.5.0...v2.6.0) (2025-07-17)
+
+
+### Features
+
+* array with bracket notation config ([80926bd](https://github.com/mattkhan/jsonapi-resources-anchor/commit/80926bdae08cffb231eff1956d1d215c89c19737))
+
 # [2.5.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.4.0...v2.5.0) (2025-07-15)
 
 
