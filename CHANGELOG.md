@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.6.0...v2.7.0) (2025-07-21)
+
+
+### Features
+
+* raise when registering duplicate type name ([075aafb](https://github.com/mattkhan/jsonapi-resources-anchor/commit/075aafba7774c8fd9f5ce6846d7bd0424b4650fc))
+
 # [2.6.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.5.0...v2.6.0) (2025-07-17)
 
 
