@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.7.0...v2.8.0) (2025-07-26)
+
+
+### Features
+
+* excludable resources ([3d167d2](https://github.com/mattkhan/jsonapi-resources-anchor/commit/3d167d25dfac43229928625fe5a94843059a6ea5))
+
 # [2.7.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.6.0...v2.7.0) (2025-07-21)
 
 
