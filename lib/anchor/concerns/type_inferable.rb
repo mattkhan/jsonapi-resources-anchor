@@ -12,6 +12,17 @@ module Anchor
           @anchor_schema_name ||= name || anchor_default_schema_name
         end
 
+        # @param reason [String] Reason to exclude from schema.
+        # @return [String]
+        def anchor_exclude_from_schema(reason: nil)
+          @anchor_exclude_from_schema ||= reason || (_abstract ? "Abstract." : nil)
+        end
+
+        # @return [Boolean] True if should be excluded.
+        def anchor_excluded_from_schema?
+          anchor_exclude_from_schema.present?
+        end
+
         private
 
         # @anchor_method_added_count[attribute] > 1 implies the attribute
