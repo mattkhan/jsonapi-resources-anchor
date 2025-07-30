@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.8.0...v2.9.0) (2025-07-30)
+
+
+### Features
+
+* infer default as non-null config ([724e67d](https://github.com/mattkhan/jsonapi-resources-anchor/commit/724e67df4f1727a72d1d6bf41e1391ac61533b28))
+
 # [2.8.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.7.0...v2.8.0) (2025-07-26)
 
 
