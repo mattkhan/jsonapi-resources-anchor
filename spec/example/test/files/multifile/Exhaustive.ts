@@ -53,6 +53,8 @@ type Model = {
   resourceOverridden: unknown;
   /** This is a comment. */
   withComment: Maybe<string>;
+  defaultedBoolean: boolean;
+  defaultedAt: string;
   relationships: {};
   meta: {
     some_count: number;

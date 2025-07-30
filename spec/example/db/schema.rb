@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_15_211806) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_30_180611) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
@@ -58,6 +58,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_211806) do
     t.string "model_overridden"
     t.string "resource_overridden"
     t.string "with_comment", comment: "This is a comment."
+    t.boolean "defaulted_boolean", default: false
+    t.datetime "defaulted_at", default: -> { "now()" }
   end
 
   create_table "posts", force: :cascade do |t|

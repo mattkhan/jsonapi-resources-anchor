@@ -8,7 +8,8 @@ module Anchor
       :empty_relationship_type,
       :use_type_as_schema_name,
       :maybe_as_union,
-      :array_bracket_notation
+      :array_bracket_notation,
+      :infer_default_as_non_null
 
     def initialize
       @ar_column_to_type = nil
@@ -20,6 +21,7 @@ module Anchor
       @use_type_as_schema_name = nil
       @maybe_as_union = nil
       @array_bracket_notation = nil
+      @infer_default_as_non_null = nil
     end
   end
 end

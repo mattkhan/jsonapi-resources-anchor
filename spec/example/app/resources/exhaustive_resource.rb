@@ -42,6 +42,8 @@ class ExhaustiveResource < ApplicationResource
   attribute :model_overridden
   attribute :resource_overridden
   attribute :with_comment
+  attribute :defaulted_boolean
+  attribute :defaulted_at
 
   class LinkSchema < Anchor::Types::Object
     property :self, Anchor::Types::String

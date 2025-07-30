@@ -91,6 +91,8 @@ module Anchor
                  end
                end
               type.type
+            elsif type.is_a?(Anchor::Types::Maybe) && Anchor.config.infer_default_as_non_null
+              column.default.present? || column.default_function.present? && column.instance_variable_get(:@generated).blank? ? type.type : type
             else
               type
             end
