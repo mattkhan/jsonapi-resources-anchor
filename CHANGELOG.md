@@ -1,3 +1,10 @@
+## [2.9.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.9.0...v2.9.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* tests ([9e2d614](https://github.com/mattkhan/jsonapi-resources-anchor/commit/9e2d61444d21972b0c977539f2d3c7422e27ded2))
+
 # [2.9.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.8.0...v2.9.0) (2025-07-30)
 
 
