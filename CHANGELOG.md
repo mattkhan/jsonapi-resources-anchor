@@ -1,3 +1,10 @@
+## [2.9.2](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.9.1...v2.9.2) (2025-08-27)
+
+
+### Bug Fixes
+
+* parens around bracket notation array values ([a359275](https://github.com/mattkhan/jsonapi-resources-anchor/commit/a359275e857a997af32c3788fd030cc27ccbb075))
+
 ## [2.9.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.9.0...v2.9.1) (2025-07-30)
 
 
