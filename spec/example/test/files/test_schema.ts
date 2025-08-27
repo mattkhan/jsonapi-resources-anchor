@@ -64,6 +64,7 @@ export type Exhaustive = {
   }>;
   assertedArrayRecord: Array<Record<string, number>>;
   assertedUnion: string | number;
+  assertedUnionArray: Array<string | number>;
   /** This is a provided description. */
   withDescription: string;
   inferredUnknown: unknown;
