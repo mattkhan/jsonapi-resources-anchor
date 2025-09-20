@@ -43,6 +43,7 @@ class ExhaustiveResource < ApplicationResource
   attribute :model_overridden
   attribute :resource_overridden
   attribute :with_comment
+  attribute :with_parsed_comment
   attribute :defaulted_boolean
   attribute :defaulted_at
 

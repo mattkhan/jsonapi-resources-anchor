@@ -87,6 +87,12 @@ export type Exhaustive = {
   resourceOverridden: unknown;
   /** This is a comment. */
   withComment: Maybe<string>;
+  /** {
+  "description": "This is a parsed JSON comment.",
+  "test": 2
+}
+ */
+  withParsedComment: Maybe<string>;
   defaultedBoolean: boolean;
   defaultedAt: string;
   relationships: {};
