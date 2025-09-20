@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_30_180611) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_20_024446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -60,6 +60,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_30_180611) do
     t.string "with_comment", comment: "This is a comment."
     t.boolean "defaulted_boolean", default: false
     t.datetime "defaulted_at", default: -> { "now()" }
+    t.string "with_parsed_comment", comment: "{\n  \"description\": \"This is a parsed JSON comment.\",\n  \"test\": 2\n}\n"
   end
 
   create_table "posts", force: :cascade do |t|
