@@ -10,7 +10,8 @@ module Anchor
       :maybe_as_union,
       :array_bracket_notation,
       :infer_default_as_non_null,
-      :ar_comment_to_string
+      :ar_comment_to_string,
+      :infer_ar_enums
 
     def initialize
       @ar_column_to_type = nil
@@ -24,6 +25,7 @@ module Anchor
       @array_bracket_notation = nil
       @infer_default_as_non_null = nil
       @ar_comment_to_string = nil
+      @infer_ar_enums = nil
     end
   end
 end
