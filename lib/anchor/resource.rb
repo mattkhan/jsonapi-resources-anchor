@@ -76,8 +76,11 @@ module Anchor
           serializer_defined = (_model_class.try(:attribute_types) || {})[model_method.to_s].respond_to?(:coder)
           method_defined = model_method_defined || resource_method_defined || serializer_defined
 
+          enum = Anchor.config.infer_ar_enums && !method_defined && _model_class.try(:defined_enums).try(:[], model_method.to_s)
           column = !method_defined && _model_class.try(:columns_hash).try(:[], model_method.to_s)
-          if column
+          if enum
+            Anchor::Types::Union.new(enum.map { |_key, val| Anchor::Types::Literal.new(val) })
+          elsif column
             type = Anchor::Types::Inference::ActiveRecord::SQL.from(column)
             unless description
               description = column.comment if Anchor.config.use_active_record_comment

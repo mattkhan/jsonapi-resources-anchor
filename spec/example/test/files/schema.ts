@@ -88,7 +88,7 @@ export type Exhaustive = {
   json: Record<string, unknown>;
   jsonb: Record<string, unknown>;
   daterange: unknown;
-  enum: unknown;
+  enum: "sample" | "enum" | "value";
   virtualUpcasedString: Maybe<string>;
   loljk: "never";
   delegatedMaybeString: string;
