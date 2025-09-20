@@ -54,11 +54,7 @@ type Model = {
   resourceOverridden: unknown;
   /** This is a comment. */
   withComment: Maybe<string>;
-  /** {
-  "description": "This is a parsed JSON comment.",
-  "test": 2
-}
- */
+  /** This is a parsed JSON comment. */
   withParsedComment: Maybe<string>;
   defaultedBoolean: boolean;
   defaultedAt: string;
