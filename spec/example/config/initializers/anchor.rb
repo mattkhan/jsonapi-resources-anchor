@@ -10,6 +10,14 @@ module Anchor
       return Types::Literal.new("never") if column.name == "loljk"
       Types::Inference::ActiveRecord::SQL.default_ar_column_to_type(column)
     }
+    c.ar_comment_to_string = lambda { |comment|
+      begin
+        res = JSON.parse(comment)
+        res["description"]
+      rescue JSON::ParserError
+        comment
+      end
+    }
 
     c.empty_relationship_type = -> { Anchor::Types::Object }
   end
