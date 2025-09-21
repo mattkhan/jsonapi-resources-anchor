@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.9.2...v2.10.0) (2025-09-21)
+
+
+### Features
+
+* add ar_comment_to_string config ([c677593](https://github.com/mattkhan/jsonapi-resources-anchor/commit/c67759340e6d0ba088f72ead8786be3fe10c76f8))
+
 ## [2.9.2](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.9.1...v2.9.2) (2025-08-27)
 
 
