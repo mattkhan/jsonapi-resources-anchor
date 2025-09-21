@@ -1,3 +1,10 @@
+# [2.11.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.10.0...v2.11.0) (2025-09-21)
+
+
+### Features
+
+* infer AR enums as unions config ([b68ab01](https://github.com/mattkhan/jsonapi-resources-anchor/commit/b68ab01df3f87b6f439614e0f97d095bb1fba5d9))
+
 # [2.10.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.9.2...v2.10.0) (2025-09-21)
 
 
