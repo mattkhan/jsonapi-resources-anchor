@@ -78,10 +78,15 @@ module Anchor
 
           enum = Anchor.config.infer_ar_enums && !method_defined && _model_class.try(:defined_enums).try(:[], model_method.to_s)
           column = !method_defined && _model_class.try(:columns_hash).try(:[], model_method.to_s)
-          if enum
-            Anchor::Types::Union.new(enum.map { |_key, val| Anchor::Types::Literal.new(val) })
-          elsif column
+
+          if column
             type = Anchor::Types::Inference::ActiveRecord::SQL.from(column)
+
+            if enum
+              enum_type = Anchor::Types::Union.new(enum.map { |_key, val| Anchor::Types::Literal.new(val) })
+              type = type.is_a?(Anchor::Types::Maybe) ? Anchor::Types::Maybe.new(enum_type) : enum_type
+            end
+
             unless description
               description = column.comment if Anchor.config.use_active_record_comment
               if description && !Anchor.config.ar_comment_to_string.nil?
