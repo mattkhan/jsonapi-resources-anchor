@@ -1,3 +1,10 @@
+## [2.11.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.11.0...v2.11.1) (2025-09-26)
+
+
+### Bug Fixes
+
+* nullability for enums ([5dcad62](https://github.com/mattkhan/jsonapi-resources-anchor/commit/5dcad625003f4d36ab261e936cc4df4b8a526aca))
+
 # [2.11.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.10.0...v2.11.0) (2025-09-21)
 
 
