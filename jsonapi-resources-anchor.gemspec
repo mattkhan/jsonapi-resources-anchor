@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
   s.metadata = {
     "changelog_uri" => "https://github.com/mattkhan/jsonapi-resources-anchor/blob/main/CHANGELOG.md",
-    "documentation_uri" => "https://anchor-gem.vercel.app/docs",
+    "documentation_uri" => "https://jsonapi-resources-anchor.up.railway.app/docs",
     "source_code_uri" => "https://github.com/mattkhan/jsonapi-resources-anchor",
     "github_repo" => "ssh://github.com/mattkhan/jsonapi-resources-anchor",
   }

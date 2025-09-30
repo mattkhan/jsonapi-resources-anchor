@@ -1,6 +1,6 @@
 # JSON:API Resource Schema Generation: Anchor
 
-[Documentation](https://anchor-gem.vercel.app/docs)
+[Documentation](https://jsonapi-resources-anchor.up.railway.app/docs)
 
 Easily generate TypeScript schemas, JSON Schemas, or any schema of your choice
 from [cerebris/jsonapi-resources](https://github.com/cerebris/jsonapi-resources)
@@ -10,13 +10,13 @@ Ideally, API schemas have the types of each payload fully specified.
 
 `jsonapi-resources-anchor` provides:
 
-- [Type inference](https://anchor-gem.vercel.app/docs/Features/type_inference)
+- [Type inference](https://jsonapi-resources-anchor.up.railway.app/docs/Features/type_inference)
   via the underlying ActiveRecord model of a resource
-- [Type annotation](https://anchor-gem.vercel.app/docs/Features/type_annotation),
+- [Type annotation](https://jsonapi-resources-anchor.up.railway.app/docs/Features/type_annotation),
   e.g. `attribute :name_length, Anchor::Types::Integer`
-- [Configuration](https://anchor-gem.vercel.app/docs/API/configuration), e.g.
-  setting the case (camel, snake, etc.) of properties and deriving TypeScript
-  comments from database comments
+- [Configuration](https://jsonapi-resources-anchor.up.railway.app/docs/API/configuration),
+  e.g. setting the case (camel, snake, etc.) of properties and deriving
+  TypeScript comments from database comments
 - TypeScript and JSON Schema generators via
   `Anchor::TypeScript::SchemaGenerator` and
   `Anchor::JSONSchema::SchemaGenerator`
