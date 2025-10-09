@@ -1,0 +1,3 @@
+class Exhaustive < ApplicationRecord
+  def model_overridden: () -> String
+end
