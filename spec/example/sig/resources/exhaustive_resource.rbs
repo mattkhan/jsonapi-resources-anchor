@@ -1,0 +1,12 @@
+class ExhaustiveResource < ApplicationResource
+  def resource_overridden: () -> 'resource_overridden'
+  # rbs comment
+  def asserted_number: () -> Integer
+  def asserted_null: () -> nil
+  def asserted_union: () -> ({
+    str: String,
+    union: String? | false | bool | boolish | Float | Numeric | Integer | Array[Integer] | 'a' & ('b' | 'c') | 2 | 'union woo',
+    array: Array[String?],
+    intersection: { a: 1 } & { b: true?, s: "string lit" },
+    next: { i: Integer, ?f: Float } } | 'union')
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_20_024446) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_11_000738) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,7 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_20_024446) do
     t.json "json", null: false
     t.jsonb "jsonb", null: false
     t.daterange "daterange", null: false
-    t.enum "enum", default: "sample", null: false, enum_type: "exhaustive_enum"
+    t.enum "enum", default: "sample", null: false, comment: "This is an enum comment.", enum_type: "exhaustive_enum"
     t.uuid "uuid", null: false
     t.virtual "virtual_upcased_string", type: :string, as: "upper((string)::text)", stored: true
     t.datetime "created_at", null: false

@@ -12,6 +12,7 @@ module Anchor
     Array = Struct.new(:type)
     Literal = Struct.new(:value)
     Union = Struct.new(:types)
+    Intersection = Struct.new(:types)
     Reference = Struct.new(:name) do
       def anchor_schema_name
         name
