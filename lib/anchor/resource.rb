@@ -79,7 +79,13 @@ module Anchor
           enum = Anchor.config.infer_ar_enums && !method_defined && _model_class.try(:defined_enums).try(:[], model_method.to_s)
           column = !method_defined && _model_class.try(:columns_hash).try(:[], model_method.to_s)
 
-          if column
+          rbs_defined = defined?(::RBS) && ::RBS::VERSION.first == "3"
+
+          if resource_method_defined && rbs_defined
+            Anchor::Types::Inference::RBS.from(name.to_sym, resource_method)
+          elsif model_method_defined && rbs_defined
+            Anchor::Types::Inference::RBS.from(_model_class.name.to_sym, model_method.to_sym)
+          elsif column
             type = Anchor::Types::Inference::ActiveRecord::SQL.from(column)
 
             if enum
@@ -109,6 +115,12 @@ module Anchor
             else
               type
             end
+          elsif rbs_defined
+            # TODO: Methods may not be defined on the class at generation time?
+            [
+              Anchor::Types::Inference::RBS.from(name.to_sym, resource_method),
+              Anchor::Types::Inference::RBS.from(_model_class.name.to_sym, model_method.to_sym),
+            ].find { |t| t != Anchor::Types::Unknown } || Anchor::Types::Unknown
           else
             Anchor::Types::Unknown
           end

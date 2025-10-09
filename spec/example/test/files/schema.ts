@@ -66,7 +66,21 @@ export type Exhaustive = {
     d_optional?: Maybe<string>;
   }>;
   assertedArrayRecord: Array<Record<string, number>>;
-  assertedUnion: string | number;
+  assertedUnion: {
+    str: string;
+    union: Maybe<string> | false | boolean | unknown | number | number | number | Array<number> | ("a") & ("b" | "c") | 2 | "union woo";
+    array: Array<Maybe<string>>;
+    intersection: ({
+      a: 1;
+    }) & ({
+      b: Maybe<true>;
+      s: "string lit";
+    });
+    next: {
+      i: number;
+      f?: number;
+    };
+  } | "union";
   assertedUnionArray: Array<string | number>;
   /** This is a provided description. */
   withDescription: string;
@@ -88,12 +102,13 @@ export type Exhaustive = {
   json: Record<string, unknown>;
   jsonb: Record<string, unknown>;
   daterange: unknown;
+  /** This is an enum comment. */
   enum: "sample" | "enum" | "value";
   virtualUpcasedString: Maybe<string>;
   loljk: "never";
   delegatedMaybeString: string;
-  modelOverridden: unknown;
-  resourceOverridden: unknown;
+  modelOverridden: "model_overridden";
+  resourceOverridden: "resource_overridden";
   /** This is a comment. */
   withComment: Maybe<string>;
   /** This is a parsed JSON comment. */
