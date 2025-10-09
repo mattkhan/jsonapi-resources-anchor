@@ -7,7 +7,21 @@ type Model = {
   type: "exhaustives";
   /** My asserted string. */
   assertedString: string;
-  assertedNumber: number;
+  assertedNumber: {
+    str: string;
+    union: Maybe<string> | false | boolean | unknown | number | number | number | Array<number> | ("a") & ("b" | "c") | 2 | "union woo";
+    array: Array<Maybe<string>>;
+    intersection: ({
+      a: 1;
+    }) & ({
+      b: Maybe<true>;
+      s: "string lit";
+    });
+    next: {
+      i: number;
+      f?: number;
+    };
+  };
   assertedBoolean: boolean;
   assertedNull: null;
   assertedUnknown: unknown;
@@ -24,7 +38,7 @@ type Model = {
     d_optional?: Maybe<string>;
   }>;
   assertedArrayRecord: Array<Record<string, number>>;
-  assertedUnion: string | number;
+  assertedUnion: number | string;
   assertedUnionArray: Array<string | number>;
   /** This is a provided description. */
   withDescription: string;
@@ -50,8 +64,8 @@ type Model = {
   virtualUpcasedString: Maybe<string>;
   loljk: "never";
   delegatedMaybeString: string;
-  modelOverridden: unknown;
-  resourceOverridden: unknown;
+  modelOverridden: string;
+  resourceOverridden: string;
   /** This is a comment. */
   withComment: Maybe<string>;
   /** This is a parsed JSON comment. */

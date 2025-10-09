@@ -11,6 +11,7 @@ module Anchor::TypeScript
         when Anchor::Types::Null.singleton_class then "null"
         when Anchor::Types::Record, Anchor::Types::Record.singleton_class then "Record<string, #{type_string(type.try(:value_type) || Anchor::Types::Unknown)}>"
         when Anchor::Types::Union then type.types.map { |type| type_string(type, depth) }.join(" | ")
+        when Anchor::Types::Intersection then type.types.map { |type| "(#{type_string(type, depth)})" }.join(" & ")
         when Anchor::Types::Maybe then Anchor.config.maybe_as_union ? type_string(Anchor::Types::Union.new([type.type, Anchor::Types::Null]), depth) : "Maybe<#{type_string(type.type, depth)}>"
         when Anchor::Types::Array then Anchor.config.array_bracket_notation ? "(#{type_string(type.type, depth)})[]" : "Array<#{type_string(type.type, depth)}>"
         when Anchor::Types::Literal then serialize_literal(type.value)
