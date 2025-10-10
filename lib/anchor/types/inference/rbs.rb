@@ -12,8 +12,8 @@ module Anchor::Types::Inference
 
         @env ||= ::RBS::Environment.from_loader(@loader).resolve_type_names
 
-        klass = ::RBS::TypeName.new(name: class_name, namespace: ::RBS::Namespace.root)
-        return Types::Unknown unless @env.class_decls[klass]
+        klass = @env.class_decls.keys.find { |kl| [class_name.to_s, "::#{class_name}"].include?(kl.to_s) }
+        return Types::Unknown unless klass
 
         @builder ||= ::RBS::DefinitionBuilder.new(env: @env)
         instance = @builder.build_instance(klass)

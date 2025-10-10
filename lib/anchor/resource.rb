@@ -114,7 +114,11 @@ module Anchor
               type
             end
           else
-            Anchor::Types::Unknown
+            # methods may not be defined on the class at runtime of gem
+            [
+              Anchor::Types::Inference::RBS.from(name.to_sym, resource_method),
+              Anchor::Types::Inference::RBS.from(_model_class.name.to_sym, model_method.to_sym),
+            ].find { |t| t != Anchor::Types::Unknown } || Anchor::Types::Unknown
           end
         end
 
