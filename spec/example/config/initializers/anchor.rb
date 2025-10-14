@@ -6,6 +6,7 @@ module Anchor
     c.infer_default_as_non_null = true
     c.infer_nullable_relationships_as_optional = true
     c.infer_ar_enums = true
+    c.rbs = "fallback"
 
     c.ar_column_to_type = lambda { |column|
       return Types::Literal.new("never") if column.name == "loljk"

@@ -3,7 +3,7 @@ module Anchor
     class DuplicateTypeError < StandardError; end
 
     class << self
-      Register = Struct.new(:resources, :enums, keyword_init: true)
+      Register = Data.define(:resources, :enums)
 
       def register
         Register.new(resources: @resources || [], enums: @enums || [])

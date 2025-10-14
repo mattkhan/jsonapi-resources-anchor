@@ -2,7 +2,7 @@ module Anchor::TypeScript
   class FileStructure
     # @param file_name [String] name of file, e.g. model.ts
     # @param type [Anchor::Types]
-    Import = Struct.new(:file_name, :type, keyword_init: true)
+    Import = Data.define(:file_name, :type)
     class FileUtils
       def self.imports_to_code(imports)
         imports.group_by(&:file_name).map do |file_name, file_imports|
@@ -71,16 +71,17 @@ module Anchor::TypeScript
     end
 
     def relationships_to_import
-      relationships = @object.properties.find { |p| p.name == :relationships }
+      relationships = @object.properties.find { |p| p.name.to_sym == :relationships }
       return [] if relationships.nil? || relationships.type.try(:properties).nil?
       relationships.type.properties.flat_map { |p| references_from_type(p.type) }.uniq.sort_by(&:anchor_schema_name)
     end
 
     def references_from_type(type)
       case type
-      when Anchor::Types::Array, Anchor::Types::Maybe then references_from_type(type.type)
+      when Anchor::Types::Array, Anchor::Types::Maybe, Anchor::Types::Identity then references_from_type(type.type)
       when Anchor::Types::Union then type.types.flat_map { |t| references_from_type(t) }
       when Anchor::Types::Reference then [type]
+      when Anchor::Types::Unknown.singleton_class then []
       end.uniq.sort_by(&:anchor_schema_name)
     end
 

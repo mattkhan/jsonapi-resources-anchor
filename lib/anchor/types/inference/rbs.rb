@@ -1,33 +1,29 @@
 module Anchor::Types::Inference
   module RBS
     class << self
-      # @param class_name [Symbol] e.g. :Exhaustive
-      # @param method_name [Symbol] e.g. :model_overridden
-      def from(class_name, method_name)
-        @loader ||= ::RBS::EnvironmentLoader.new.tap do |l|
-          l.add(path: Rails.root.join("sig"))
-        end
-
-        @env ||= ::RBS::Environment.from_loader(@loader).resolve_type_names
-
-        # TODO: Do we need both the absolute and non-absolute namespaces?
-        klass = @env.class_decls.keys.find { |kl| [class_name.to_s, "::#{class_name}"].include?(kl.to_s) }
-        return Types::Unknown unless klass
-
-        @builder ||= ::RBS::DefinitionBuilder.new(env: @env)
-        instance = @builder.build_instance(klass)
-
-        instance_method = instance.methods[method_name]
-        return Types::Unknown unless instance_method
-
-        method_types = instance.methods[method_name].method_types
-        return Types::Unknown unless method_types.length == 1
-
-        return_type = method_types.first.type.return_type
-        from_rbs_type(return_type)
+      def enabled?
+        Anchor.config.rbs.to_s == "fallback"
       end
 
-      private
+      def validate!
+        return if defined?(::RBS) && ::RBS::VERSION.first == "3"
+        raise "RBS version conflict: rbs ~> 3 required."
+      end
+
+      # @param klass [Class]
+      # @return [Class, nil]
+      def get_definition(klass)
+        env.class_decls.keys.find do |definition|
+          # TODO: Do we need both absolute and relative here?
+          [klass.name, "::#{klass.name}"].include?(definition.to_s)
+        end
+      end
+
+      def build_instance(klass)
+        if (definition = get_definition(klass))
+          builder.build_instance(definition)
+        end
+      end
 
       def from_rbs_type(type)
         case type
@@ -43,6 +39,22 @@ module Anchor::Types::Inference
         when ::RBS::Types::Intersection then from_intersection(type)
         when ::RBS::Types::Tuple then Types::Unknown # TODO
         else Types::Unknown
+        end
+      end
+
+      private
+
+      def builder
+        @builder ||= ::RBS::DefinitionBuilder.new(env:)
+      end
+
+      def env
+        @env ||= ::RBS::Environment.from_loader(loader).resolve_type_names
+      end
+
+      def loader
+        @loader ||= ::RBS::EnvironmentLoader.new.tap do |l|
+          l.add(path: Rails.root.join("sig"))
         end
       end
 
