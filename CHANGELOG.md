@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.11.1...v2.12.0) (2025-10-14)
+
+
+### Features
+
+* initial rbs support ([9096793](https://github.com/mattkhan/jsonapi-resources-anchor/commit/9096793476630436848eb6021f2668ed60cbce25))
+
 ## [2.11.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.11.0...v2.11.1) (2025-09-26)
 
 
