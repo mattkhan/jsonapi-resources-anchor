@@ -1,10 +1,9 @@
 module Anchor::TypeScript
   class SchemaGenerator < Anchor::SchemaGenerator
-    def initialize(register:, context: {}, include_all_fields: false, exclude_fields: nil) # rubocop:disable Lint/MissingSuper
+    def initialize(register:, context: {}, include_all_fields: false) # rubocop:disable Lint/MissingSuper
       @register = register
       @context = context
       @include_all_fields = include_all_fields
-      @exclude_fields = exclude_fields
     end
 
     def call
@@ -15,7 +14,6 @@ module Anchor::TypeScript
         r.express(
           context: @context,
           include_all_fields: @include_all_fields,
-          exclude_fields: @exclude_fields.nil? ? [] : @exclude_fields[r.anchor_schema_name.to_sym],
         )
       end
 

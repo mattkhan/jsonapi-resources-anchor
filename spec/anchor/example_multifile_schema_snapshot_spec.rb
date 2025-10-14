@@ -26,7 +26,6 @@ RSpec.describe "Example" do
       register: Schema.register,
       context: {},
       include_all_fields: true,
-      exclude_fields: nil,
       manually_editable: true,
     )
 end

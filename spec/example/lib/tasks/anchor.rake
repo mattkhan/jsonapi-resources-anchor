@@ -22,16 +22,12 @@ namespace :anchor do
       Anchor::TypeScript::SchemaGenerator.call(register: Schema.register, context: { role: "test" })
     }
     write_to "all_fields_false_schema.ts", -> { Anchor::TypeScript::SchemaGenerator.call(register: Schema.register) }
-    write_to "excluded_fields_schema.ts", -> {
-      Anchor::TypeScript::SchemaGenerator.call(register: Schema.register, exclude_fields: { User: [:name, :posts] })
-    }
     write_to_multi "multifile",
       false,
       Anchor::TypeScript::MultifileSchemaGenerator.new(
         register: Schema.register,
         context: {},
         include_all_fields: true,
-        exclude_fields: nil,
         manually_editable: true,
       )
 
@@ -46,7 +42,6 @@ namespace :anchor do
       register: Schema.register,
       context: {},
       include_all_fields: true,
-      exclude_fields: nil,
       manually_editable: true,
     )
     modified_files = Anchor::TypeScript::MultifileSaveService.call(generator:, folder_path:, force: true)
