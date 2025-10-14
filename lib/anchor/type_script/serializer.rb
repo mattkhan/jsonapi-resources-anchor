@@ -18,6 +18,7 @@ module Anchor::TypeScript
         when Anchor::Types::Reference then type.name
         when Anchor::Types::Object, Anchor::Types::Object.singleton_class then serialize_object(type, depth)
         when Anchor::Types::Enum.singleton_class then type.anchor_schema_name
+        when Anchor::Types::Identity then type_string(type.type)
         when Anchor::Types::Unknown.singleton_class then "unknown"
         else raise RuntimeError
         end

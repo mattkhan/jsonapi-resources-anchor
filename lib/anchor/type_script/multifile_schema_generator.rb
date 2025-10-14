@@ -1,6 +1,6 @@
 module Anchor::TypeScript
   class MultifileSchemaGenerator < Anchor::SchemaGenerator
-    Result = Struct.new(:name, :text, :type, keyword_init: true)
+    Result = Data.define(:name, :text, :type)
 
     module FileType
       RESOURCE = "resource"
@@ -11,14 +11,12 @@ module Anchor::TypeScript
       register:,
       context: {},
       include_all_fields: false,
-      exclude_fields: nil,
       manually_editable: true,
       resource_file_extension: ".ts"
     )
       @register = register
       @context = context
       @include_all_fields = include_all_fields
-      @exclude_fields = exclude_fields
       @manually_editable = manually_editable
       @resource_file_extension = "." + resource_file_extension.sub(/^\./, "")
     end
@@ -47,7 +45,6 @@ module Anchor::TypeScript
         definition = r.definition(
           context: @context,
           include_all_fields: @include_all_fields,
-          exclude_fields: @exclude_fields.nil? ? [] : @exclude_fields[r.anchor_schema_name.to_sym],
         )
 
         file_structure = ::Anchor::TypeScript::FileStructure.new(definition, extension: @resource_file_extension)

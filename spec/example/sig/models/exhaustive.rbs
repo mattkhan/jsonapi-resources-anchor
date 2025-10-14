@@ -1,3 +1,5 @@
 class Exhaustive < ApplicationRecord
+  # A multiline
+  # comment.
   def model_overridden: () -> 'model_overridden'
 end

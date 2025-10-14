@@ -1,6 +1,12 @@
 module Anchor::TypeScript
-  class Resource < Anchor::Resource
-    Definition = Struct.new(:name, :object, keyword_init: true)
+  class Resource
+    Definition = Data.define(:name, :object)
+
+    delegate :anchor_schema_name, to: :@klass
+
+    def initialize(klass)
+      @klass = klass
+    end
 
     def express(...)
       @object = object(...)
@@ -13,21 +19,17 @@ module Anchor::TypeScript
       Definition.new(name: anchor_schema_name, object: @object)
     end
 
-    def object(context: {}, include_all_fields:, exclude_fields:)
-      included_fields = schema_fetchable_fields(context:, include_all_fields:)
-      included_fields -= exclude_fields if exclude_fields
+    def object(context: {}, include_all_fields:)
+      t = Anchor::Inference::JSONAPI::ReadType.infer(@klass, context:, include_all_fields:)
+      return t if t["relationships"].type.properties.count > 0
+      return t.omit(["relationships"]) unless Anchor.config.empty_relationship_type
 
-      relationships_property = anchor_relationships_property(included_fields:)
-      if relationships_property.nil? && Anchor.config.empty_relationship_type
-        relationships_property = Anchor::Types::Property.new(:relationships, Anchor.config.empty_relationship_type.call)
-      end
-
-      properties = [id_property, type_property] +
-        Array.wrap(anchor_attributes_properties(included_fields:)) +
-        Array.wrap(relationships_property) +
-        [anchor_meta_property].compact + [anchor_links_property].compact
-
-      Anchor::Types::Object.new(properties)
+      t.overwrite(Anchor::Types::Object.new([empty_relationships_property]))
     end
+
+    private
+
+    def empty_relationships_property = property("relationships", Anchor.config.empty_relationship_type.call)
+    def property(...) = Anchor::Types::Property.new(...)
   end
 end
