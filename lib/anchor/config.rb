@@ -12,7 +12,8 @@ module Anchor
       :infer_default_as_non_null,
       :ar_comment_to_string,
       :infer_ar_enums,
-      :rbs
+      :rbs,
+      :rbs_sig_path
 
     def initialize
       @ar_column_to_type = nil
@@ -28,6 +29,7 @@ module Anchor
       @ar_comment_to_string = nil
       @infer_ar_enums = nil
       @rbs = "off"
+      @rbs_sig_path = Rails.root.join("rbs")
     end
   end
 end
