@@ -22,6 +22,7 @@ module Anchor
     }
 
     c.empty_relationship_type = -> { Anchor::Types::Object }
+    c.rbs_sig_path = Rails.root.join("sig")
   end
 end
 

@@ -54,7 +54,7 @@ module Anchor::Types::Inference
 
       def loader
         @loader ||= ::RBS::EnvironmentLoader.new.tap do |l|
-          l.add(path: Rails.root.join("sig"))
+          l.add(path: Anchor.config.rbs_sig_path)
         end
       end
 
