@@ -1,3 +1,10 @@
+# [2.13.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.12.0...v2.13.0) (2025-10-21)
+
+
+### Features
+
+* rbs sig path config ([7de9313](https://github.com/mattkhan/jsonapi-resources-anchor/commit/7de931361d1a62e827bc78a4bb344cb85c417915))
+
 # [2.12.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.11.1...v2.12.0) (2025-10-14)
 
 
