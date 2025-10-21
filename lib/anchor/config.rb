@@ -29,7 +29,7 @@ module Anchor
       @ar_comment_to_string = nil
       @infer_ar_enums = nil
       @rbs = "off"
-      @rbs_sig_path = Rails.root.join("rbs")
+      @rbs_sig_path = Rails.root.join("sig")
     end
   end
 end
