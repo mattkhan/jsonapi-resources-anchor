@@ -1,3 +1,10 @@
+## [2.13.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.13.0...v2.13.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* default RBS sig path ([c366207](https://github.com/mattkhan/jsonapi-resources-anchor/commit/c366207cc0c69831cbdbdbecb9f658ba5cd9f410))
+
 # [2.13.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.12.0...v2.13.0) (2025-10-21)
 
 
