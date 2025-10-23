@@ -49,7 +49,7 @@ module Anchor::TypeScript
       def safe_name(property)
         name = property.name
         if name.match?(/[^a-zA-Z0-9_]/)
-          "\"#{name}\""
+          "\"#{name}\"" + (property.optional ? "?" : "")
         else
           name.to_s + (property.optional ? "?" : "")
         end
