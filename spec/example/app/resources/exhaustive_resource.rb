@@ -2,6 +2,7 @@ class ExhaustiveResource < ApplicationResource
   class AssertedObject < Types::Object
     property :a, Types::Literal.new("a")
     property "b-dash", Types::Literal.new(1)
+    property "optional-dash", Types::Literal.new(1), optional: true
     property :c, Types::Maybe.new(Types::String)
     property :d_optional, Types::Maybe.new(Types::String), optional: true
   end
