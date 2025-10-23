@@ -4,6 +4,14 @@
 ### Bug Fixes
 
 * optional quoted attributes ([49c5ded](https://github.com/mattkhan/jsonapi-resources-anchor/commit/49c5dede2018a4e35dc953526dbb01a6ad758e04))
+* rails constraint ([1688d33](https://github.com/mattkhan/jsonapi-resources-anchor/commit/1688d331d73a552ef1e251be780b75f48637969a))
+
+## [2.13.2](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.13.1...v2.13.2) (2025-10-23)
+
+
+### Bug Fixes
+
+* optional quoted attributes ([49c5ded](https://github.com/mattkhan/jsonapi-resources-anchor/commit/49c5dede2018a4e35dc953526dbb01a6ad758e04))
 
 ## [2.13.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.13.0...v2.13.1) (2025-10-21)
 
