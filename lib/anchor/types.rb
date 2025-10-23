@@ -11,7 +11,11 @@ module Anchor
     Record = Data.define(:value_type)
     Maybe = Data.define(:type)
     Array = Data.define(:type)
-    Literal = Data.define(:value)
+    Literal = Data.define(:value) do
+      def [](value)
+        new(value)
+      end
+    end
     Union = Data.define(:types) do
       def |(other)
         self.class.new(types + [other])
