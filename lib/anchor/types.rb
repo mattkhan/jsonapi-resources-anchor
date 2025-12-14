@@ -7,22 +7,58 @@ module Anchor
     class Boolean; end
     class Null; end
     class Unknown; end
-    Identity = Data.define(:type)
-    Record = Data.define(:value_type)
-    Maybe = Data.define(:type)
-    Array = Data.define(:type)
-    Literal = Data.define(:value) do
-      def [](value)
-        new(value)
+
+    Identity = Data.define(:type) do
+      class << self
+        alias_method :[], :new
       end
     end
+
+    Record = Data.define(:value_type) do
+      class << self
+        alias_method :[], :new
+      end
+    end
+
+    Maybe = Data.define(:type) do
+      class << self
+        alias_method :[], :new
+      end
+    end
+
+    Array = Data.define(:type) do
+      class << self
+        alias_method :[], :new
+      end
+    end
+
+    Literal = Data.define(:value) do
+      class << self
+        alias_method :[], :new
+      end
+    end
+
     Union = Data.define(:types) do
+      class << self
+        def [](*types) = new(types)
+      end
+
       def |(other)
         self.class.new(types + [other])
       end
     end
-    Intersection = Data.define(:types)
+
+    Intersection = Data.define(:types) do
+      class << self
+        def [](*types) = new(types)
+      end
+    end
+
     Reference = Data.define(:name) do
+      class << self
+        alias_method :[], :new
+      end
+
       def anchor_schema_name = name
 
       def |(other)

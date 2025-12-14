@@ -1,10 +1,10 @@
 class ExhaustiveResource < ApplicationResource
   class AssertedObject < Types::Object
-    property :a, Types::Literal.new("a")
-    property "b-dash", Types::Literal.new(1)
-    property "optional-dash", Types::Literal.new(1), optional: true
-    property :c, Types::Maybe.new(Types::String)
-    property :d_optional, Types::Maybe.new(Types::String), optional: true
+    property :a, Types::Literal["a"]
+    property "b-dash", Types::Literal[1]
+    property "optional-dash", Types::Literal[1], optional: true
+    property :c, Types::Maybe[Types::String]
+    property :d_optional, Types::Maybe[Types::String], optional: true
   end
 
   attribute :asserted_string, Types::String, description: "My asserted string."
@@ -13,10 +13,10 @@ class ExhaustiveResource < ApplicationResource
   attribute :asserted_null
   attribute :asserted_unknown, Types::Unknown
   attribute :asserted_object, AssertedObject
-  attribute :asserted_maybe_object, Types::Maybe.new(AssertedObject)
-  attribute :asserted_array_record, Types::Array.new(Types::Record.new(Types::Integer))
+  attribute :asserted_maybe_object, Types::Maybe[AssertedObject]
+  attribute :asserted_array_record, Types::Array[Types::Record.new(Types::Integer)]
   attribute :asserted_union
-  attribute :asserted_union_array, Types::Array.new(Types::Union.new([Types::String, Types::Float]))
+  attribute :asserted_union_array, Types::Array[Types::Union[Types::String, Types::Float]]
   attribute :with_description, Types::String, description: "This is a provided description."
   attribute :inferred_unknown
 
