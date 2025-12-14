@@ -1,3 +1,10 @@
+# [2.15.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.14.0...v2.15.0) (2025-12-14)
+
+
+### Features
+
+* more bracket initializers ([73039a6](https://github.com/mattkhan/jsonapi-resources-anchor/commit/73039a6be1f1ed61ef0cb68fd7c558c554aba1d0))
+
 # [2.14.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.13.1...v2.14.0) (2025-10-23)
 
 
