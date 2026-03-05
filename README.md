@@ -5,7 +5,8 @@
 [![Documentation preview](./assets/docs.png)](https://jsonapi-resources-anchor.up.railway.app/)
 
 Easily generate TypeScript schemas, JSON Schemas, or any schema of your choice
-from [cerebris/jsonapi-resources](https://github.com/cerebris/jsonapi-resources)
+from
+[JSONAPI-Resources/jsonapi-resources](https://github.com/JSONAPI-Resources/jsonapi-resources)
 `JSONAPI::Resource` classes.
 
 Ideally, API schemas have the types of each payload fully specified.
