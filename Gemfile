@@ -6,7 +6,7 @@ gemspec
 
 gem "jsonapi-resources",
   "0.11.0.beta2",
-  git: "https://github.com/cerebris/jsonapi-resources",
+  git: "https://github.com/JSONAPI-Resources/jsonapi-resources",
   branch: "v0-11-dev",
   ref: "d3c094b"
 
