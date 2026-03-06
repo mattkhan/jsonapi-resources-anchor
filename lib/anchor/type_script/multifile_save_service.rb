@@ -36,7 +36,7 @@ module Anchor::TypeScript
     end
 
     def save_sha
-      File.open(sha_hash_path, "w") { |f| f.write(@generator.sha_hash.to_json) }
+      File.open(sha_hash_path, "w") { |f| f.write("#{JSON.pretty_generate(@generator.sha_hash)}\n") }
     end
 
     # @return [String, nil] file name of file that is written to. nil if not written to
