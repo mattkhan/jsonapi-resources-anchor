@@ -1,3 +1,10 @@
+## [2.15.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.15.0...v2.15.1) (2026-03-06)
+
+
+### Bug Fixes
+
+* write hash.json with prettier-compatible formatting ([#56](https://github.com/mattkhan/jsonapi-resources-anchor/issues/56)) ([09bc2a8](https://github.com/mattkhan/jsonapi-resources-anchor/commit/09bc2a824a0b403fb0ba85be3d987efc4241f0da))
+
 # [2.15.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.14.0...v2.15.0) (2025-12-14)
 
 
