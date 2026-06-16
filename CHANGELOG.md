@@ -1,3 +1,10 @@
+## [2.15.2](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.15.1...v2.15.2) (2026-06-16)
+
+
+### Bug Fixes
+
+* remove rails 8.1 constraint ([1775e22](https://github.com/mattkhan/jsonapi-resources-anchor/commit/1775e22488f850fda84f858d29d1fc72678e5cb8))
+
 ## [2.15.1](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.15.0...v2.15.1) (2026-03-06)
 
 
