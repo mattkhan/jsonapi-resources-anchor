@@ -4,6 +4,8 @@ ruby "3.3.10"
 
 gemspec
 
+gem "rails", "< 8.1"
+
 gem "jsonapi-resources",
   "0.11.0.beta2",
   git: "https://github.com/JSONAPI-Resources/jsonapi-resources",
