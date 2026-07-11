@@ -1,5 +1,47 @@
 module Anchor
   module Types
+    class NodeStream
+      include Enumerable
+
+      def initialize(root) = @root = root
+
+      def each(&blk)
+        return enum_for(:each) unless blk
+        walk(@root, &blk)
+      end
+
+      def of_kind(klass)
+        select { |n| n.is_a?(Class) ? n <= klass : n.is_a?(klass) }
+      end
+
+      def enums = of_kind(Anchor::Types::Enum)
+      def references = of_kind(Anchor::Types::Reference)
+
+      private
+
+      def walk(node, &blk)
+        yield(node)
+        Anchor::Types.children(node).each { |c| walk(c, &blk) }
+      end
+    end
+
+    class << self
+      def children(node) = default_children(node)
+
+      def default_children(node)
+        case node
+        when Anchor::Types::Array, Anchor::Types::Maybe, Anchor::Types::Identity then [node.type]
+        when Anchor::Types::Union, Anchor::Types::Intersection then node.types
+        when Anchor::Types::Record then [node.value_type]
+        when Anchor::Types::Object then node.properties
+        when Anchor::Types::Property then [node.type]
+        else []
+        end
+      end
+
+      def each_node(node) = Anchor::Types::NodeStream.new(node)
+    end
+
     class String; end
     class Float; end
     class Integer; end
