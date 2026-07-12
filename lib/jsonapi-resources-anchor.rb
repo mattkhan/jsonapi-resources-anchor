@@ -1,4 +1,5 @@
 require "anchor/types"
+require "anchor/region"
 require "anchor/anchor"
 require "anchor/config"
 require "anchor/schema_generator"

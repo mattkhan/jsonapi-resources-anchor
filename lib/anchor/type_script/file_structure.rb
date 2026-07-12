@@ -42,10 +42,8 @@ module Anchor::TypeScript
       export_string = FileUtils.export_code(@definition.name)
 
       if manually_editable
-        start_autogen = "// START AUTOGEN\n"
-        end_autogen = "// END AUTOGEN\n"
         unedited_export_def = "type #{@name} = Model;\n"
-        [start_autogen, imports_string, typedef, end_autogen, unedited_export_def, export_string].join("\n")
+        [Anchor::TypeScript::MultifileSaveService.default_region.fence([imports_string, typedef].join("\n")), unedited_export_def, export_string].join("\n")
       else
         [imports_string, typedef, export_string].join("\n")
       end

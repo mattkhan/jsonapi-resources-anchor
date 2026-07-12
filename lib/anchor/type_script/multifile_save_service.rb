@@ -1,9 +1,5 @@
 module Anchor::TypeScript
   class MultifileSaveService
-    START_MARKER = "// START AUTOGEN\n"
-    END_MARKER = "\n// END AUTOGEN\n"
-    REGEX = /#{Regexp.escape(START_MARKER)}(.*?)#{Regexp.escape(END_MARKER)}/m
-
     def self.call(...)
       new(...).call
     end
@@ -21,6 +17,12 @@ module Anchor::TypeScript
       modified_files = results.filter_map { |result| save_result(result) }
       save_sha
       modified_files
+    end
+
+    def self.default_region
+      start_marker = "// START AUTOGEN\n"
+      end_marker = "// END AUTOGEN\n"
+      Anchor::Region.new(start_marker:, end_marker:)
     end
 
     private
@@ -52,11 +54,8 @@ module Anchor::TypeScript
 
       existing_content = File.read(path)
 
-      new_content = if manually_editable?(existing_content)
-        replace_between(
-          existing: existing_content,
-          new: result.text,
-        )
+      new_content = if manually_editable_file?(existing_content)
+        self.class.default_region.replace(text: existing_content, content: result.text)
       else
         result.text
       end
@@ -65,20 +64,6 @@ module Anchor::TypeScript
       result.name
     end
 
-    def manually_editable?(text)
-      !text.match(REGEX).nil?
-    end
-
-    def replace_between(existing:, new:)
-      new_content = extract_between(new)
-      raise "Was @generator initialized with manually_editable: false?" unless new_content
-
-      existing.gsub(REGEX, "#{START_MARKER}\n#{new_content}\n#{END_MARKER}")
-    end
-
-    def extract_between(text)
-      match = text.match(REGEX)
-      match[1].strip
-    end
+    def manually_editable_file?(text) = self.class.default_region.present?(text)
   end
 end
