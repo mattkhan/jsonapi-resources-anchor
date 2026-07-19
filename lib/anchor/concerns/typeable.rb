@@ -12,6 +12,8 @@ module Anchor
       def literals(values) = union(values.map { |value| literal(value) })
       def reference(...) = Anchor::Types::Reference.new(...)
       def references(names) = union(names.map { |name| reference(name) })
+      def resource(...) = Anchor::Types::Resource.new(...)
+      def resources(names) = union(names.map { |name| resource(name) })
       def record(value_type = Anchor::Types::Unknown) = Anchor::Types::Record.new(value_type)
 
       def boolean = Anchor::Types::Boolean

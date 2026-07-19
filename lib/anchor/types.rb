@@ -16,6 +16,7 @@ module Anchor
 
       def enums = of_kind(Anchor::Types::Enum)
       def references = of_kind(Anchor::Types::Reference)
+      def resources = of_kind(Anchor::Types::Resource)
 
       private
 
@@ -107,6 +108,8 @@ module Anchor
         Anchor::Types::Union.new([self, other])
       end
     end
+
+    class Resource < Reference; end
 
     Property = Data.define(:name, :type, :optional, :description) do
       def initialize(name:, type:, optional: false, description: nil)
