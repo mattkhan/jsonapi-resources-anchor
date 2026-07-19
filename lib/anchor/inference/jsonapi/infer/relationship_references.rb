@@ -16,7 +16,7 @@ module Anchor::Inference::JSONAPI::Infer
         return unknown
       end
 
-      return reference(rel.resource_klass.anchor_schema_name) unless rel.polymorphic?
+      return resource(rel.resource_klass.anchor_schema_name) unless rel.polymorphic?
 
       version = nil
       version ||= rel.respond_to?(:polymorphic_types) && :new # 0.11.0.beta2
@@ -27,10 +27,10 @@ module Anchor::Inference::JSONAPI::Infer
       when :old then rel.class.polymorphic_types
       end
 
-      return reference(rel.resource_klass.anchor_schema_name) unless polymorphic_types
+      return resource(rel.resource_klass.anchor_schema_name) unless polymorphic_types
 
       resource_klasses = polymorphic_types.map { |t| @klass.resource_klass_for(t) }
-      union(resource_klasses.map { |rk| reference(rk.anchor_schema_name) })
+      resources(resource_klasses.map(&:anchor_schema_name))
     end
 
     def relationships = @klass._relationships

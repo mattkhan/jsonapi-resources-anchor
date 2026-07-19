@@ -46,9 +46,9 @@ module Anchor::Inference::JSONAPI::Infer
         polymorphic = anchor_relationship.resources.present?
 
         base_type = if polymorphic
-          references(anchor_relationship.resources.map(&:anchor_schema_name))
+          resources(anchor_relationship.resources.map(&:anchor_schema_name))
         else
-          reference(anchor_relationship.resource.anchor_schema_name)
+          resource(anchor_relationship.resource.anchor_schema_name)
         end
 
         if rel.is_a?(::JSONAPI::Relationship::ToMany)

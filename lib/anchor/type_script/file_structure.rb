@@ -78,8 +78,9 @@ module Anchor::TypeScript
       case type
       when Anchor::Types::Array, Anchor::Types::Maybe, Anchor::Types::Identity then references_from_type(type.type)
       when Anchor::Types::Union then type.types.flat_map { |t| references_from_type(t) }
-      when Anchor::Types::Reference then [type]
+      when Anchor::Types::Resource then [type]
       when Anchor::Types::Unknown.singleton_class then []
+      else []
       end.uniq.sort_by(&:anchor_schema_name)
     end
 

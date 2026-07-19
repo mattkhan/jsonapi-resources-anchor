@@ -27,7 +27,7 @@ module Anchor::JSONSchema
     # @return [Anchor::Types::Object]
     def root_object
       properties = resources.map do |resource|
-        Types::Property.new(resource.anchor_schema_name.underscore, Types::Reference.new(resource.anchor_schema_name))
+        Types::Property.new(resource.anchor_schema_name.underscore, Types::Resource.new(resource.anchor_schema_name))
       end
 
       Types::Object.new(properties)
