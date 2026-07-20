@@ -31,5 +31,13 @@ module Anchor
       @rbs = "off"
       @rbs_sig_path = Rails.root.join("sig")
     end
+
+    def with_config(**overrides)
+      originals = overrides.keys.index_with { |key| public_send(key) }
+      overrides.each { |key, val| public_send("#{key}=", val) }
+      yield
+    ensure
+      originals.each { |key, val| public_send("#{key}=", val) }
+    end
   end
 end
