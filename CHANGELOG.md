@@ -1,3 +1,13 @@
+# [2.16.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.15.2...v2.16.0) (2026-07-20)
+
+
+### Features
+
+* base Filter inference ([44b6b54](https://github.com/mattkhan/jsonapi-resources-anchor/commit/44b6b541113363d2ea62b5b8ec04e2276cf8e7f2))
+* basic region primitive ([8e52db2](https://github.com/mattkhan/jsonapi-resources-anchor/commit/8e52db282d914c0cb2c2fa496e6d9e85b738acf6))
+* node traversal primitive ([16c3156](https://github.com/mattkhan/jsonapi-resources-anchor/commit/16c3156daaba08a479609f51c678b86923a4d5db))
+* use resource refs to enable discrimination ([c419a38](https://github.com/mattkhan/jsonapi-resources-anchor/commit/c419a38d173ec2ac4d5533e6a473867571f4ca2d))
+
 ## [2.15.2](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.15.1...v2.15.2) (2026-06-16)
 
 
