@@ -1,3 +1,10 @@
+# [2.17.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.16.0...v2.17.0) (2026-07-20)
+
+
+### Features
+
+* temporary config overrides ([8ba5788](https://github.com/mattkhan/jsonapi-resources-anchor/commit/8ba57881399adfc1c4c97f8bf4145dda27d19362))
+
 # [2.16.0](https://github.com/mattkhan/jsonapi-resources-anchor/compare/v2.15.2...v2.16.0) (2026-07-20)
 
 
